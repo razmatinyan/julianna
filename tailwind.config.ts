@@ -19,6 +19,12 @@ export default <Partial<Config>>{
 			letterSpacing: {
 				tighter: '-0.04em',
 			},
+			fontSize: {
+				'button-fluid-base': 'clamp(0.875rem, 1vw, 1.75rem)',
+			},
+			transitionTimingFunction: {
+				button: 'cubic-bezier(0.35, 0, 0, 1)',
+			},
 		},
 	},
 }

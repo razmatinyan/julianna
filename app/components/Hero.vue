@@ -9,6 +9,7 @@ const sectionTitle = ref()
 const gradientTitle = ref()
 const heroAbout = ref()
 const imageContainer = ref()
+const cta = ref()
 
 CustomEase.create(
 	'smooth.out',
@@ -82,7 +83,7 @@ animate(() => {
 		'-=0.8',
 	)
 	tl.from(
-		availabilityInfo.value,
+		[availabilityInfo.value, cta.value],
 		{
 			duration: 1.5,
 			ease: 'expo.out',
@@ -161,7 +162,7 @@ animate(() => {
 				</div>
 				<h2
 					ref="sectionTitle"
-					class="section-title text-5xl lg:text-7xl font-medium text-white tracking-tighter leading-[1.1] mb-2"
+					class="section-title text-5xl lg:text-7xl font-medium text-white tracking-tighter leading-[1.1]"
 				>
 					Sales Manager <br />
 					based <br />
@@ -190,10 +191,16 @@ animate(() => {
 					<div
 						class="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent opacity-80"
 					></div>
+					<div
+						class="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-dark-500 to-transparent"
+					></div>
 				</div>
 			</div>
 
-			<div class="lg:col-span-3 mb-10 lg:mb-24 flex flex-col items-start">
+			<div
+				ref="cta"
+				class="lg:col-span-3 mb-10 lg:mb-24 flex flex-col items-start"
+			>
 				<p
 					ref="heroAbout"
 					class="text-lg text-neutral-400 mb-8 leading-relaxed"
@@ -201,19 +208,7 @@ animate(() => {
 					Hi, I'm Julianna. A passionate brand designer crafting
 					seamless digital experiences that connect and convert.
 				</p>
-				<button
-					class="group flex items-center gap-3 bg-brand-600 text-white pl-5 pr-2 py-2 rounded-full transition-all duration-300 shadow-lg shadow-brand-500/20"
-				>
-					<span class="font-medium text-sm">See my works</span>
-					<span
-						class="bg-white/20 p-2 rounded-full group-hover:bg-white group-hover:text-brand-600 transition-colors"
-					>
-						<Icon
-							name="lucide:arrow-right"
-							class="block w-4 h-4"
-						></Icon>
-					</span>
-				</button>
+				<UIButton v-roll-text class="uppercase">See My Works</UIButton>
 			</div>
 		</div>
 	</section>

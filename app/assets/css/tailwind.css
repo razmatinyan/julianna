@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@theme {
+  --font-display: "Geist", sans-serif;
+  --transition-timing-function-button: cubic-bezier(0.35, 0, 0, 1);
+}

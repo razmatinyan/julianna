@@ -13,7 +13,7 @@ onMounted(() => {
 	document.fonts.ready.then(() => {
 		setTimeout(() => {
 			isLoaded.value = true
-		}, 500)
+		}, 200)
 	})
 })
 </script>
