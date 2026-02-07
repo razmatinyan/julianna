@@ -29,7 +29,7 @@ html.lenis body {
 }
 
 body {
-  @apply antialiased bg-[#0a0a0a] text-neutral-200 selection:bg-brand-500 selection:text-white
+  @apply antialiased bg-dark-500 text-neutral-200 selection:bg-brand-500 selection:text-white
 }
 
 .lenis.lenis-smooth {

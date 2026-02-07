@@ -23,5 +23,5 @@ export const useGSAP = () => {
 		})
 	}
 
-	return { gsap, SplitText, ScrollTrigger, animate }
+	return { gsap, SplitText, ScrollTrigger, CustomEase, animate }
 }

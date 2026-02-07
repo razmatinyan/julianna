@@ -1,6 +1,6 @@
 <template>
 	<header>
-		<nav class="fixed top-8 left-1/2 -translate-x-1/2 z-50">
+		<nav class="fixed top-8 left-1/2 -translate-x-1/2 z-40">
 			<div
 				class="bg-neutral-900/80 backdrop-blur-xl border border-white/10 rounded-full pl-2 pr-6 py-2 flex items-center shadow-2xl transition-all duration-500"
 			>

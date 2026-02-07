@@ -1,11 +1,10 @@
 <script setup lang="ts">
-import { CustomEase } from 'gsap/all'
-
-const { gsap, SplitText, animate } = useGSAP()
+const { gsap, SplitText, CustomEase, animate } = useGSAP()
 const { startEntrance } = useLoading()
 
 const container = ref()
 const title = ref()
+const availabilityInfo = ref()
 const sectionTitle = ref()
 const gradientTitle = ref()
 const heroAbout = ref()
@@ -82,6 +81,19 @@ animate(() => {
 		},
 		'-=0.8',
 	)
+	tl.from(
+		availabilityInfo.value,
+		{
+			duration: 1.5,
+			ease: 'expo.out',
+			z: 500,
+			rotationX: -45,
+			autoAlpha: 0,
+			filter: 'blur(20px)',
+			scale: 1.2,
+		},
+		'<',
+	)
 	tl.fromTo(
 		imageContainer.value,
 		{
@@ -90,7 +102,6 @@ animate(() => {
 		{
 			duration: 1.5,
 			clipPath: 'inset(0% 0% 0% 0%)',
-			// ease: 'expo.out',
 			ease: 'smooth.out',
 			onComplete: () => {
 				gsap.set(imageContainer.value, { clipPath: 'none' })
@@ -132,6 +143,7 @@ animate(() => {
 		>
 			<div class="lg:col-span-5 mb-10 lg:mb-20">
 				<div
+					ref="availabilityInfo"
 					class="inline-flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-3 py-1.5 mb-8"
 				>
 					<span class="relative flex h-2 w-2">
@@ -154,12 +166,12 @@ animate(() => {
 					Sales Manager <br />
 					based <br />
 				</h2>
-				<span
+				<h2
 					ref="gradientTitle"
 					class="gradient-wrapper text-5xl lg:text-7xl font-medium bg-clip-text text-transparent bg-gradient-to-r from-brand-500 to-white"
 				>
 					in Armenia
-				</span>
+				</h2>
 			</div>
 
 			<div
@@ -190,9 +202,9 @@ animate(() => {
 					seamless digital experiences that connect and convert.
 				</p>
 				<button
-					class="group flex items-center gap-3 bg-gradient-to-r from-brand-600 to-brand-500 hover:from-brand-500 hover:to-brand-400 text-white pl-5 pr-2 py-2 rounded-full transition-all duration-300 shadow-lg shadow-brand-500/20"
+					class="group flex items-center gap-3 bg-brand-600 text-white pl-5 pr-2 py-2 rounded-full transition-all duration-300 shadow-lg shadow-brand-500/20"
 				>
-					<span class="font-medium text-sm">See my work</span>
+					<span class="font-medium text-sm">See my works</span>
 					<span
 						class="bg-white/20 p-2 rounded-full group-hover:bg-white group-hover:text-brand-600 transition-colors"
 					>
@@ -221,5 +233,11 @@ animate(() => {
 	transform-style: preserve-3d;
 	will-change: transform, opacity, filter;
 	backface-visibility: hidden;
+}
+
+button {
+	overflow: hidden;
+	transform-origin: center;
+	will-change: transform;
 }
 </style>
