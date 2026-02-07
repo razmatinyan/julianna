@@ -1,25 +1,27 @@
 import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { CustomEase } from 'gsap/all'
 import { SplitText } from 'gsap/SplitText'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
-gsap.registerPlugin(ScrollTrigger, SplitText)
+gsap.registerPlugin(ScrollTrigger, SplitText, CustomEase)
 
 export const useGSAP = () => {
 	const animate = (
-		fn: () => void,
-		scope?: Ref<HTMLElement | null> | HTMLElement,
+		fn: (ctx: gsap.Context) => void,
+		scope?: Ref<HTMLElement | null>,
 	) => {
 		let ctx: gsap.Context
 
 		onMounted(() => {
-			const element = isRef(scope) ? scope.value : scope
-			ctx = gsap.context(fn, element || undefined)
+			ctx = gsap.context(() => {
+				fn(ctx)
+			}, scope?.value || undefined)
 		})
 
 		onUnmounted(() => {
-			ctx?.revert()
+			if (ctx) ctx.revert()
 		})
 	}
 
-	return { gsap, animate, ScrollTrigger, SplitText }
+	return { gsap, SplitText, ScrollTrigger, animate }
 }

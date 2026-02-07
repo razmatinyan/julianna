@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { CustomEase } from 'gsap/all'
 
-const { gsap, SplitText } = useGSAP()
+const { gsap, SplitText, animate } = useGSAP()
 const { startEntrance } = useLoading()
 
 const container = ref()
@@ -11,113 +11,104 @@ const gradientTitle = ref()
 const heroAbout = ref()
 const imageContainer = ref()
 
-gsap.registerPlugin(CustomEase)
-
 CustomEase.create(
 	'smooth.out',
 	'M0,0 C0.207,0.561 0.489,0.793 0.489,0.793 0.489,0.793 0.735,1 1,1 ',
 )
 
-let tl: gsap.core.Timeline | null = null
+animate(() => {
+	const splittedTitle = new SplitText(title.value, {
+		type: 'chars',
+		charsClass: 'split-char',
+	})
+	const splittedSectionTitle = new SplitText(sectionTitle.value, {
+		type: 'chars',
+		charsClass: 'split-char',
+	})
+	const splittedHeroAbout = new SplitText(heroAbout.value, {
+		type: 'words',
+		wordsClass: 'split-word',
+	})
 
-onMounted(() => {
-	const ctx = gsap.context(() => {
-		const splittedTitle = new SplitText(title.value, {
-			type: 'chars',
-			charsClass: 'split-char',
-		})
-		const splittedSectionTitle = new SplitText(sectionTitle.value, {
-			type: 'chars',
-			charsClass: 'split-char',
-		})
-		const splittedHeroAbout = new SplitText(heroAbout.value, {
-			type: 'words',
-			wordsClass: 'split-word',
-		})
+	const tl = gsap.timeline({ paused: true })
 
-		tl = gsap.timeline({ paused: true })
+	tl.from(
+		splittedTitle.chars,
+		{
+			duration: 0.5,
+			ease: 'expo.inOut',
+			y: 30,
+			autoAlpha: 0,
+			stagger: 0.075,
+			filter: 'blur(10px)',
+		},
+		'+=.5',
+	)
 
-		tl.from(
-			splittedTitle.chars,
-			{
-				duration: 0.5,
-				ease: 'expo.inOut',
-				y: 30,
-				autoAlpha: 0,
-				stagger: 0.075,
-
-				filter: 'blur(10px)',
+	tl.from(
+		splittedSectionTitle.chars,
+		{
+			duration: 0.5,
+			ease: 'expo.inOut',
+			y: 30,
+			autoAlpha: 0,
+			stagger: 0.035,
+			filter: 'blur(10px)',
+		},
+		'<',
+	)
+	tl.from(
+		splittedHeroAbout.words,
+		{
+			duration: 1,
+			ease: 'expo.inOut',
+			y: 30,
+			autoAlpha: 0,
+			stagger: 0.055,
+			filter: 'blur(10px)',
+		},
+		'<',
+	)
+	tl.from(
+		gradientTitle.value,
+		{
+			duration: 1.5,
+			ease: 'expo.out',
+			z: 500,
+			rotationX: -45,
+			autoAlpha: 0,
+			filter: 'blur(20px)',
+			scale: 1.2,
+		},
+		'-=0.8',
+	)
+	tl.fromTo(
+		imageContainer.value,
+		{
+			clipPath: 'inset(0% 0% 100% 0%)',
+		},
+		{
+			duration: 1.5,
+			clipPath: 'inset(0% 0% 0% 0%)',
+			// ease: 'expo.out',
+			ease: 'smooth.out',
+			onComplete: () => {
+				gsap.set(imageContainer.value, { clipPath: 'none' })
 			},
-			'+=.5',
-		)
+		},
+		'<',
+	)
 
-		tl.from(
-			splittedSectionTitle.chars,
-			{
-				duration: 0.5,
-				ease: 'expo.inOut',
-				y: 30,
-				autoAlpha: 0,
-				stagger: 0.035,
-				filter: 'blur(10px)',
-			},
-			'<',
-		)
-		tl.from(
-			splittedHeroAbout.words,
-			{
-				duration: 1,
-				ease: 'expo.inOut',
-				y: 30,
-				autoAlpha: 0,
-				stagger: 0.055,
-				filter: 'blur(10px)',
-			},
-			'<',
-		)
-		tl.from(
-			gradientTitle.value,
-			{
-				duration: 1.5,
-				ease: 'expo.out',
-				z: 500,
-				rotationX: -45,
-				autoAlpha: 0,
-				filter: 'blur(20px)',
-				scale: 1.2,
-			},
-			'-=0.8',
-		)
-		tl.fromTo(
-			imageContainer.value,
-			{
-				clipPath: 'inset(0% 0% 100% 0%)',
-			},
-			{
-				duration: 1.5,
-				clipPath: 'inset(0% 0% 0% 0%)',
-				// ease: 'expo.out',
-				ease: 'smooth.out',
-				onComplete: () => {
-					gsap.set(imageContainer.value, { clipPath: 'none' })
-				},
-			},
-			'<',
-		)
-	}, container?.value)
-
-	onUnmounted(() => ctx.revert())
-})
-
-watch(
-	startEntrance,
-	shouldStart => {
-		if (shouldStart && tl) {
-			tl.play()
-		}
-	},
-	{ immediate: true },
-)
+	watch(
+		startEntrance,
+		shouldStart => {
+			if (shouldStart && tl) {
+				tl.play()
+			}
+		},
+		{ immediate: true },
+	)
+}, container?.value)
 </script>
 
 <template>
