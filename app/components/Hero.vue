@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { gsap, SplitText, CustomEase, animate } = useGSAP()
+const { gsap, CustomEase, animate } = useGSAP()
 const { startEntrance } = useLoading()
 
 const container = ref()
@@ -17,23 +17,10 @@ CustomEase.create(
 )
 
 animate(() => {
-	const splittedTitle = new SplitText(title.value, {
-		type: 'chars',
-		charsClass: 'split-char',
-	})
-	const splittedSectionTitle = new SplitText(sectionTitle.value, {
-		type: 'chars',
-		charsClass: 'split-char',
-	})
-	const splittedHeroAbout = new SplitText(heroAbout.value, {
-		type: 'words',
-		wordsClass: 'split-word',
-	})
-
 	const tl = gsap.timeline({ paused: true })
 
 	tl.from(
-		splittedTitle.chars,
+		title.value.getElements(),
 		{
 			duration: 0.5,
 			ease: 'expo.inOut',
@@ -44,72 +31,84 @@ animate(() => {
 		},
 		'+=.5',
 	)
-
-	tl.from(
-		splittedSectionTitle.chars,
-		{
-			duration: 0.5,
-			ease: 'expo.inOut',
-			y: 30,
-			autoAlpha: 0,
-			stagger: 0.035,
-			filter: 'blur(10px)',
-		},
-		'<',
-	)
-	tl.from(
-		splittedHeroAbout.words,
-		{
-			duration: 1,
-			ease: 'expo.inOut',
-			y: 30,
-			autoAlpha: 0,
-			stagger: 0.055,
-			filter: 'blur(10px)',
-		},
-		'<',
-	)
-	tl.from(
-		gradientTitle.value,
-		{
-			duration: 1.5,
-			ease: 'expo.out',
-			z: 500,
-			rotationX: -45,
-			autoAlpha: 0,
-			filter: 'blur(20px)',
-			scale: 1.2,
-		},
-		'-=0.8',
-	)
-	tl.from(
-		[availabilityInfo.value, cta.value],
-		{
-			duration: 1.5,
-			ease: 'expo.out',
-			z: 500,
-			rotationX: -45,
-			autoAlpha: 0,
-			filter: 'blur(20px)',
-			scale: 1.2,
-		},
-		'<',
-	)
-	tl.fromTo(
-		imageContainer.value,
-		{
-			clipPath: 'inset(0% 0% 100% 0%)',
-		},
-		{
-			duration: 1.5,
-			clipPath: 'inset(0% 0% 0% 0%)',
-			ease: 'smooth.out',
-			onComplete: () => {
-				gsap.set(imageContainer.value, { clipPath: 'none' })
+		.from(
+			sectionTitle.value.getElements(),
+			{
+				duration: 0.5,
+				ease: 'expo.inOut',
+				y: 30,
+				autoAlpha: 0,
+				stagger: 0.035,
+				filter: 'blur(10px)',
 			},
-		},
-		'<',
-	)
+			'<',
+		)
+		.from(
+			heroAbout.value.getElements(),
+			{
+				duration: 1,
+				ease: 'expo.inOut',
+				y: 30,
+				autoAlpha: 0,
+				stagger: 0.055,
+				filter: 'blur(10px)',
+			},
+			'<',
+		)
+		.from(
+			gradientTitle.value,
+			{
+				duration: 1.5,
+				ease: 'expo.out',
+				z: 500,
+				rotationX: -45,
+				autoAlpha: 0,
+				filter: 'blur(20px)',
+				scale: 1.2,
+			},
+			'-=0.8',
+		)
+		.from(
+			availabilityInfo.value,
+			{
+				duration: 1.5,
+				ease: 'expo.out',
+				z: 500,
+				rotationX: -45,
+				autoAlpha: 0,
+				filter: 'blur(20px)',
+				scale: 1.2,
+			},
+			'<',
+		)
+		.fromTo(
+			imageContainer.value,
+			{
+				clipPath: 'inset(0% 0% 100% 0%)',
+			},
+			{
+				duration: 1.5,
+				clipPath: 'inset(0% 0% 0% 0%)',
+				ease: 'smooth.out',
+				onComplete: () => {
+					gsap.set(imageContainer.value, { clipPath: 'none' })
+				},
+			},
+			'<',
+		)
+		.from(
+			cta.value.$el,
+			{
+				duration: 1.5,
+				ease: 'expo.out',
+				z: 500,
+				rotationX: -45,
+				autoAlpha: 0,
+				filter: 'blur(20px)',
+				scale: 1.2,
+			},
+			'-=.5',
+		)
 
 	watch(
 		startEntrance,
@@ -131,12 +130,13 @@ animate(() => {
 		<div
 			class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full text-center pointer-events-none select-none z-0"
 		>
-			<h1
+			<UISplitText
 				ref="title"
+				as="h1"
 				class="text-[18vw] leading-none font-semibold text-white/5 tracking-tighter mix-blend-overlay"
 			>
 				Julianna
-			</h1>
+			</UISplitText>
 		</div>
 
 		<div
@@ -160,13 +160,14 @@ animate(() => {
 						>Available for Work</span
 					>
 				</div>
-				<h2
+				<UISplitText
 					ref="sectionTitle"
+					as="h1"
 					class="section-title text-5xl lg:text-7xl font-medium text-white tracking-tighter leading-[1.1]"
 				>
 					Sales Manager <br />
 					based <br />
-				</h2>
+				</UISplitText>
 				<h2
 					ref="gradientTitle"
 					class="gradient-wrapper text-5xl lg:text-7xl font-medium bg-clip-text text-transparent bg-gradient-to-r from-brand-500 to-white"
@@ -197,18 +198,20 @@ animate(() => {
 				</div>
 			</div>
 
-			<div
-				ref="cta"
-				class="lg:col-span-3 mb-10 lg:mb-24 flex flex-col items-start"
-			>
-				<p
+			<div class="lg:col-span-3 mb-10 lg:mb-24 flex flex-col items-start">
+				<UISplitText
+					as="p"
+					type="words"
+					inner-class="split-word"
 					ref="heroAbout"
 					class="text-lg text-neutral-400 mb-8 leading-relaxed"
 				>
 					Hi, I'm Julianna. A passionate brand designer crafting
 					seamless digital experiences that connect and convert.
-				</p>
-				<UIButton v-roll-text class="uppercase">See My Works</UIButton>
+				</UISplitText>
+				<UIButton ref="cta" v-roll-text class="uppercase"
+					>See My Works</UIButton
+				>
 			</div>
 		</div>
 	</section>

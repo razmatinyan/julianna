@@ -1,8 +1,8 @@
 <template>
 	<Navbar />
 	<Hero />
-	<!-- <About />
-	<Work />
+	<About />
+	<!-- <Work />
 	<Testemonials />
 	<Footer /> -->
 </template>

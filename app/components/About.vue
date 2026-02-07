@@ -43,15 +43,9 @@
 				</div>
 
 				<div class="pt-6">
-					<button
-						class="bg-brand-600 hover:bg-brand-500 text-white rounded-full px-8 py-4 font-medium flex items-center gap-2 transition-colors"
+					<UIButton v-roll-text class="uppercase"
+						>See My Works</UIButton
 					>
-						<Icon
-							name="lucide:arrow-right-circle"
-							class="w-5 h-5"
-						/>
-						See my works
-					</button>
 				</div>
 			</div>
 		</div>
