@@ -1,49 +1,159 @@
+<script setup lang="ts">
+const { gsap, animate } = useGSAP()
+
+const container = ref()
+const sectionTitle = ref()
+const gradientText = ref()
+const sectionDescription = ref()
+const cta = ref()
+
+const sectionData = [
+	{
+		id: useId(),
+		title: 'Strategy',
+		description: 'Research, Insights, Positioning',
+	},
+	{
+		id: useId(),
+		title: 'Design',
+		description: 'UI/UX, Visual Identity, Motion',
+	},
+]
+
+animate(() => {
+	const tl = gsap.timeline({
+		scrollTrigger: {
+			trigger: container.value,
+			start: 'top 80%',
+			end: 'bottom 20%',
+			toggleActions: 'play none none reverse',
+		},
+	})
+
+	tl.from(sectionTitle.value.getElements(), {
+		duration: 0.7,
+		ease: 'expo.inOut',
+		y: 30,
+		autoAlpha: 0,
+		stagger: 0.075,
+		filter: 'blur(10px)',
+	})
+		.from(
+			gradientText.value.$el,
+			{
+				duration: 1.5,
+				delay: 0.8,
+				ease: 'expo.out',
+				z: 500,
+				rotationX: -45,
+				autoAlpha: 0,
+				filter: 'blur(20px)',
+				scale: 1.2,
+			},
+			'<',
+		)
+		.from(
+			sectionDescription.value.getElements(),
+			{
+				duration: 0.7,
+				ease: 'expo.inOut',
+				y: 30,
+				autoAlpha: 0,
+				stagger: 0.075,
+				filter: 'blur(10px)',
+			},
+			'<',
+		)
+
+	const features = container.value.querySelectorAll('.feature')
+
+	features.forEach((feature: Element) => {
+		// Select internal parts of THIS specific feature
+		const line = feature.querySelector('.h-px')
+		const title = feature.querySelector('h3')
+		const desc = feature.querySelector('p')
+
+		// Add to the master timeline
+		tl.from(
+			line,
+			{
+				scaleX: 0,
+				transformOrigin: 'left center',
+				duration: 0.8,
+				ease: 'power2.inOut',
+			},
+			'<',
+		).from(
+			[title, desc],
+			{ y: 15, autoAlpha: 0, stagger: 0.1, duration: 0.5 },
+			'-=0.5',
+		)
+	})
+
+	tl.from(
+		cta.value.$el,
+		{
+			duration: 1.5,
+			ease: 'expo.out',
+			z: 500,
+			rotationX: -45,
+			autoAlpha: 0,
+			filter: 'blur(20px)',
+			scale: 1.2,
+		},
+		'-=.5',
+	)
+}, container?.value)
+</script>
+
 <template>
-	<section class="py-32 container mx-auto px-6 lg:px-12">
+	<section
+		ref="container"
+		class="section-container py-32 container mx-auto px-6 lg:px-12"
+	>
 		<div class="grid lg:grid-cols-2 gap-16 items-start">
 			<div>
-				<h2
+				<UISplitText
+					as="h2"
+					ref="sectionTitle"
+					type="words"
 					class="text-4xl lg:text-6xl font-medium text-white tracking-tighter leading-[1.1]"
 				>
 					Crafting Meaningful <br />
 					<span class="text-neutral-500">Brands &amp; Intuitive</span>
 					<br />
 					Digital Experiences <br />
-					<span
-						class="bg-clip-text text-transparent bg-gradient-to-r from-brand-500 to-white"
-						>That Stand Out.</span
-					>
-				</h2>
+				</UISplitText>
+				<UIGradientText as="h2" ref="gradientText">
+					That Stand Out
+				</UIGradientText>
 			</div>
 			<div class="space-y-8 pt-4">
-				<p class="text-xl text-neutral-400 leading-relaxed font-light">
+				<UISplitText
+					as="p"
+					type="lines"
+					ref="sectionDescription"
+					class="text-xl text-neutral-400 leading-relaxed font-light"
+				>
 					I'm Julianna, a London-based Brand and UI/UX Designer
 					passionate about crafting visually compelling identities and
 					seamless digital experiences. With a strategic approach and
 					a keen eye for detail, I help businesses stand out and
 					connect with their audience. Let's build something
 					remarkable together.
-				</p>
+				</UISplitText>
 
-				<div class="grid grid-cols-2 gap-6 pt-4">
-					<div class="space-y-2">
-						<div class="h-px w-full bg-white/10 mb-4"></div>
-						<h4 class="text-white font-medium text-lg">Strategy</h4>
-						<p class="text-neutral-500 text-sm">
-							Research, Insights, Positioning
-						</p>
-					</div>
-					<div class="space-y-2">
-						<div class="h-px w-full bg-white/10 mb-4"></div>
-						<h4 class="text-white font-medium text-lg">Design</h4>
-						<p class="text-neutral-500 text-sm">
-							UI/UX, Visual Identity, Motion
-						</p>
-					</div>
+				<div class="features grid grid-cols-2 gap-6 pt-4">
+					<AboutFeature
+						v-for="data in sectionData"
+						:key="data.id"
+						:title="data.title"
+						:description="data.description"
+					/>
 				</div>
 
 				<div class="pt-6">
-					<UIButton v-roll-text class="uppercase"
+					<UIButton ref="cta" v-roll-text class="uppercase"
 						>See My Works</UIButton
 					>
 				</div>
@@ -51,7 +161,5 @@
 		</div>
 	</section>
 </template>
-
-<script setup></script>
 
 <style lang="scss" scoped></style>

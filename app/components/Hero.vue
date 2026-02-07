@@ -56,7 +56,7 @@ animate(() => {
 			'<',
 		)
 		.from(
-			gradientTitle.value,
+			gradientTitle.value.$el,
 			{
 				duration: 1.5,
 				ease: 'expo.out',
@@ -168,12 +168,13 @@ animate(() => {
 					Sales Manager <br />
 					based <br />
 				</UISplitText>
-				<h2
+				<UIGradientText
+					as="h2"
 					ref="gradientTitle"
 					class="gradient-wrapper text-5xl lg:text-7xl font-medium bg-clip-text text-transparent bg-gradient-to-r from-brand-500 to-white"
 				>
 					in Armenia
-				</h2>
+				</UIGradientText>
 			</div>
 
 			<div
@@ -202,7 +203,6 @@ animate(() => {
 				<UISplitText
 					as="p"
 					type="words"
-					inner-class="split-word"
 					ref="heroAbout"
 					class="text-lg text-neutral-400 mb-8 leading-relaxed"
 				>
