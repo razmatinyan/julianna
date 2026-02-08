@@ -1,6 +1,8 @@
 <script setup lang="ts">
+import type { Component } from 'vue'
+
 interface Props {
-	as?: string
+	as?: Component | string
 	type?: 'chars' | 'words' | 'lines'
 	innerClass?: string
 }

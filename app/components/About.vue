@@ -68,12 +68,10 @@ animate(() => {
 	const features = container.value.querySelectorAll('.feature')
 
 	features.forEach((feature: Element) => {
-		// Select internal parts of THIS specific feature
-		const line = feature.querySelector('.h-px')
-		const title = feature.querySelector('h3')
-		const desc = feature.querySelector('p')
+		const line = feature.querySelector('.feature-line')
+		const title = feature.querySelector('.feature-title')
+		const desc = feature.querySelector('.feature-description')
 
-		// Add to the master timeline
 		tl.from(
 			line,
 			{
@@ -85,7 +83,14 @@ animate(() => {
 			'<',
 		).from(
 			[title, desc],
-			{ y: 15, autoAlpha: 0, stagger: 0.1, duration: 0.5 },
+			{
+				y: 15,
+				scale: 1.05,
+				filter: 'blur(20px)',
+				autoAlpha: 0,
+				stagger: 0.1,
+				duration: 0.5,
+			},
 			'-=0.5',
 		)
 	})
@@ -153,7 +158,7 @@ animate(() => {
 				</div>
 
 				<div class="pt-6">
-					<UIButton ref="cta" v-roll-text class="uppercase"
+					<UIButton ref="cta" class="uppercase"
 						>See My Works</UIButton
 					>
 				</div>

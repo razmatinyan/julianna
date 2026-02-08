@@ -1,19 +1,33 @@
 <template>
-	<button class="group">
+	<component
+		:is="as"
+		class="group"
+		@mouseenter="isHovered = true"
+		@mouseleave="isHovered = false"
+	>
 		<span class="dot"></span>
-		<span class="button-text font-medium text-sm"><slot></slot></span>
+		<span class="button-text font-medium text-sm">
+			<UIRollText ref="rollingText" :is-hovered="isHovered">
+				<slot></slot>
+			</UIRollText>
+		</span>
 		<span v-if="icon" class="icon">
 			<Icon :name="icon" class="block w-4 h-4"></Icon>
 		</span>
-	</button>
+	</component>
 </template>
 
 <script setup lang="ts">
+import type { Component } from 'vue'
+
 interface Props {
+	as?: Component | string
 	icon?: string
 }
 
-const { icon = 'lucide:arrow-right' } = defineProps<Props>()
+const { as = 'button', icon = 'lucide:arrow-right' } = defineProps<Props>()
+const rollingText = ref()
+const isHovered = ref(false)
 </script>
 
 <style scoped>

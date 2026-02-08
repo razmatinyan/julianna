@@ -9,8 +9,10 @@
 </template>
 
 <script setup lang="ts">
+import type { Component } from 'vue'
+
 interface Props {
-	as?: string
+	as?: Component | string
 }
 
 const { as = 'div' } = defineProps<Props>()

@@ -10,6 +10,7 @@ const gradientTitle = ref()
 const heroAbout = ref()
 const imageContainer = ref()
 const cta = ref()
+const rolledText = ref()
 
 CustomEase.create(
 	'smooth.out',
@@ -209,9 +210,7 @@ animate(() => {
 					Hi, I'm Julianna. A passionate brand designer crafting
 					seamless digital experiences that connect and convert.
 				</UISplitText>
-				<UIButton ref="cta" v-roll-text class="uppercase"
-					>See My Works</UIButton
-				>
+				<UIButton ref="cta" class="uppercase"> See My Works </UIButton>
 			</div>
 		</div>
 	</section>
