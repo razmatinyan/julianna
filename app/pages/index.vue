@@ -1,5 +1,5 @@
 <template>
-	<Navbar />
+	<NavigationBar />
 	<Hero />
 	<About />
 	<!-- <Work />

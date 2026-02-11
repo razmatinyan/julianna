@@ -6,17 +6,18 @@ export const useLoading = () => {
 	const startEntrance = useState('startEntrance', () => false)
 	const isTransitioned = useState('isTransitioned', () => false)
 
-	if (process.client && $lenis) {
-		// @ts-ignore
-		$lenis.scrollTo(0, { immediate: true })
-		// @ts-ignore
-		$lenis.stop()
+	if (process.client && !isFinished.value) {
+		nextTick(() => {
+			if ($lenis) {
+				$lenis.scrollTo(0, { immediate: true })
+				$lenis.stop()
+			}
+		})
 	}
 
 	const finishLoading = () => {
 		isFinished.value = true
 		if (process.client && $lenis) {
-			// @ts-ignore
 			$lenis.start()
 		}
 	}

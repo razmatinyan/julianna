@@ -1,7 +1,7 @@
 <script setup lang="ts">
-const { gsap, SplitText } = useGSAP()
-const slots = useSlots()
-const inputText = ref()
+import { UISplitText } from '@/components/UI'
+
+const { gsap, animate } = useGSAP()
 
 const props = defineProps({
 	isHovered: { type: Boolean, default: false },
@@ -10,9 +10,14 @@ const props = defineProps({
 	ease: { type: String, default: 'power3.out' },
 })
 
-const root = ref<HTMLElement | null>()
-// @ts-ignore
-let ctx: gsap.Context
+const root = useTemplateRef<HTMLElement | null>('root')
+const defaultText = useTemplateRef<InstanceType<typeof UISplitText> | null>(
+	'defaultText',
+)
+const hoverText = useTemplateRef<InstanceType<typeof UISplitText> | null>(
+	'hoverText',
+)
+
 let tl: gsap.core.Timeline | null = null
 
 const play = () => tl?.play()
@@ -28,60 +33,46 @@ watch(
 	},
 )
 
-onMounted(() => {
-	inputText.value = getSlotText(slots)
+animate(() => {
+	if (!defaultText || !hoverText) return
 
-	nextTick(() => {
-		ctx = gsap.context(() => {
-			const normal = root.value?.querySelector('.roll-normal')
-			const hover = root.value?.querySelector('.roll-hover')
+	tl = gsap.timeline({ paused: true })
 
-			if (!normal || !hover) return
+	if (!defaultText.value?.getElements() || !hoverText.value?.getElements())
+		return
 
-			const splitNormal = new SplitText(normal, {
-				type: 'chars',
-				charsClass: 'inline-block',
-			})
-			const splitHover = new SplitText(hover, {
-				type: 'chars',
-				charsClass: 'inline-block',
-			})
-
-			tl = gsap.timeline({ paused: true })
-
-			tl.to(splitNormal.chars, {
-				yPercent: -100,
-				duration: props.duration,
-				stagger: props.stagger,
-				ease: props.ease,
-			}).to(
-				splitHover.chars,
-				{
-					yPercent: -100,
-					duration: props.duration,
-					stagger: props.stagger,
-					ease: props.ease,
-				},
-				0,
-			)
-		}, root.value!)
-	})
-})
-
-onUnmounted(() => {
-	// @ts-ignore
-	if (ctx) ctx.revert()
-})
+	tl.to(defaultText.value.getElements(), {
+		yPercent: -100,
+		duration: props.duration,
+		stagger: props.stagger,
+		ease: props.ease,
+	}).to(
+		hoverText.value.getElements(),
+		{
+			yPercent: -100,
+			duration: props.duration,
+			stagger: props.stagger,
+			ease: props.ease,
+		},
+		0,
+	)
+}, root)
 </script>
 
 <template>
 	<span ref="root" class="roll-container flex pointer-events-none">
 		<span class="roll-wrapper relative block overflow-hidden">
-			<span class="roll-normal block">{{ inputText }}</span>
+			<span class="roll-normal block">
+				<UISplitText ref="defaultText">
+					<slot></slot>
+				</UISplitText>
+			</span>
 			<span
 				class="roll-hover block absolute top-0 left-0 w-full translate-y-full"
 			>
-				{{ inputText }}
+				<UISplitText ref="hoverText">
+					<slot></slot>
+				</UISplitText>
 			</span>
 		</span>
 	</span>

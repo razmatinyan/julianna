@@ -1,11 +1,19 @@
 <script setup lang="ts">
+import { UISplitText, UIGradientText, UIButton } from '~/components/UI/'
+
 const { gsap, animate } = useGSAP()
 
-const container = ref()
-const sectionTitle = ref()
-const gradientText = ref()
-const sectionDescription = ref()
-const cta = ref()
+const container = useTemplateRef<HTMLElement | null>('container')
+const sectionTitle = useTemplateRef<InstanceType<typeof UISplitText> | null>(
+	'sectionTitle',
+)
+const gradientText = useTemplateRef<InstanceType<typeof UIGradientText> | null>(
+	'gradientText',
+)
+const sectionDescription = useTemplateRef<InstanceType<
+	typeof UISplitText
+> | null>('sectionDescription')
+const cta = useTemplateRef<InstanceType<typeof UIButton> | null>('cta')
 
 const sectionData = [
 	{
@@ -30,7 +38,7 @@ animate(() => {
 		},
 	})
 
-	tl.from(sectionTitle.value.getElements(), {
+	tl.from(sectionTitle.value!.getElements(), {
 		duration: 0.7,
 		ease: 'expo.inOut',
 		y: 30,
@@ -39,7 +47,7 @@ animate(() => {
 		filter: 'blur(10px)',
 	})
 		.from(
-			gradientText.value.$el,
+			gradientText.value!.$el,
 			{
 				duration: 1.5,
 				delay: 0.8,
@@ -53,7 +61,7 @@ animate(() => {
 			'<',
 		)
 		.from(
-			sectionDescription.value.getElements(),
+			sectionDescription.value!.getElements(),
 			{
 				duration: 0.7,
 				ease: 'expo.inOut',
@@ -65,38 +73,40 @@ animate(() => {
 			'<',
 		)
 
-	const features = container.value.querySelectorAll('.feature')
+	const features = container.value?.querySelectorAll('.feature')
 
-	features.forEach((feature: Element) => {
-		const line = feature.querySelector('.feature-line')
-		const title = feature.querySelector('.feature-title')
-		const desc = feature.querySelector('.feature-description')
+	if (features) {
+		features.forEach((feature: Element) => {
+			const line = feature.querySelector('.feature-line')
+			const title = feature.querySelector('.feature-title')
+			const desc = feature.querySelector('.feature-description')
 
-		tl.from(
-			line,
-			{
-				scaleX: 0,
-				transformOrigin: 'left center',
-				duration: 0.8,
-				ease: 'power2.inOut',
-			},
-			'<',
-		).from(
-			[title, desc],
-			{
-				y: 15,
-				scale: 1.05,
-				filter: 'blur(20px)',
-				autoAlpha: 0,
-				stagger: 0.1,
-				duration: 0.5,
-			},
-			'-=0.5',
-		)
-	})
+			tl.from(
+				line,
+				{
+					scaleX: 0,
+					transformOrigin: 'left center',
+					duration: 0.8,
+					ease: 'power2.inOut',
+				},
+				'<',
+			).from(
+				[title, desc],
+				{
+					y: 15,
+					scale: 1.05,
+					filter: 'blur(20px)',
+					autoAlpha: 0,
+					stagger: 0.1,
+					duration: 0.5,
+				},
+				'-=0.5',
+			)
+		})
+	}
 
 	tl.from(
-		cta.value.$el,
+		cta.value!.$el,
 		{
 			duration: 1.5,
 			ease: 'expo.out',
@@ -108,7 +118,7 @@ animate(() => {
 		},
 		'-=.5',
 	)
-}, container?.value)
+}, container.value)
 </script>
 
 <template>
@@ -166,5 +176,3 @@ animate(() => {
 		</div>
 	</section>
 </template>
-
-<style lang="scss" scoped></style>

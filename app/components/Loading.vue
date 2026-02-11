@@ -2,45 +2,55 @@
 const { isLoaded, isTransitioned, startEntrance, finishLoading } = useLoading()
 const { gsap, CustomEase } = useGSAP()
 
-CustomEase.create('hop', '0.9, 0, 0.1, 1')
-
-watch(isLoaded, ready => {
-	if (ready) {
-		const tl = gsap.timeline({
-			delay: 0.3,
-			defaults: {
-				ease: 'hop',
-			},
-			onComplete: () => {
-				isTransitioned.value = true
-				finishLoading()
-			},
-		})
-
-		tl.to('.spinner', {
-			opacity: 0,
-			duration: 0.3,
-		})
-
-		tl.to('.divider', {
-			scaleY: '100%',
-			duration: 1,
-			onComplete: () => {
-				gsap.to('.divider', { opacity: 0, duration: 0.4, delay: 0.3 })
-			},
-		})
-
-		tl.to('.overlay-block', {
-			clipPath: 'polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)',
-			duration: 1,
-			stagger: 0.1,
-			delay: 0.75,
-			onStart: () => {
-				startEntrance.value = true
-			},
-		})
-	}
+onMounted(() => {
+	CustomEase.create('hop', '0.9, 0, 0.1, 1')
 })
+
+watch(
+	isLoaded,
+	ready => {
+		if (ready) {
+			const tl = gsap.timeline({
+				delay: 0.3,
+				defaults: {
+					ease: 'hop',
+				},
+				onComplete: () => {
+					isTransitioned.value = true
+					finishLoading()
+				},
+			})
+
+			tl.to('.spinner', {
+				opacity: 0,
+				duration: 0.3,
+			})
+
+			tl.to('.divider', {
+				scaleY: '100%',
+				duration: 1,
+				onComplete: () => {
+					gsap.to('.divider', {
+						opacity: 0,
+						duration: 0.4,
+						delay: 0.3,
+					})
+				},
+			})
+
+			tl.to('.overlay-block', {
+				clipPath: 'polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)',
+				duration: 1,
+				stagger: 0.1,
+				delay: 0.75,
+				onStart: () => {
+					startEntrance.value = true
+				},
+			})
+		}
+	},
+	{ once: true },
+)
 </script>
 
 <template>
