@@ -16,6 +16,7 @@ export default defineNuxtConfig({
 		'@nuxt/icon',
 		'@nuxtjs/tailwindcss',
 		'@nuxt/fonts',
+		'@vueuse/nuxt',
 	],
 	fonts: {
 		families: [{ name: 'Geist', provider: 'google' }],

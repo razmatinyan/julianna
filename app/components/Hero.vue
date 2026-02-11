@@ -1,27 +1,43 @@
 <script setup lang="ts">
+import {
+	UISplitText,
+	UIGradientText,
+	UIButton,
+	UIPulseButtonText,
+} from '~/components/UI/'
+
 const { gsap, CustomEase, animate } = useGSAP()
 const { startEntrance } = useLoading()
 
-const container = ref()
-const title = ref()
-const availabilityInfo = ref()
-const sectionTitle = ref()
-const gradientTitle = ref()
-const heroAbout = ref()
-const imageContainer = ref()
-const cta = ref()
-const rolledText = ref()
-
-CustomEase.create(
-	'smooth.out',
-	'M0,0 C0.207,0.561 0.489,0.793 0.489,0.793 0.489,0.793 0.735,1 1,1 ',
+const container = useTemplateRef<HTMLElement | null>('container')
+const heroBackgroundText = useTemplateRef<InstanceType<
+	typeof UISplitText
+> | null>('heroBackgroundText')
+const sectionTitle = useTemplateRef<InstanceType<typeof UISplitText> | null>(
+	'sectionTitle',
 )
+const availabilityInfo = useTemplateRef<InstanceType<
+	typeof UIPulseButtonText
+> | null>('availabilityInfo')
+const gradientTitle = useTemplateRef<InstanceType<
+	typeof UIGradientText
+> | null>('gradientTitle')
+const heroAbout = useTemplateRef<InstanceType<typeof UISplitText> | null>(
+	'heroAbout',
+)
+const imageContainer = useTemplateRef<HTMLElement | null>('imageContainer')
+const cta = useTemplateRef<InstanceType<typeof UIButton> | null>('cta')
 
 animate(() => {
+	CustomEase.create(
+		'smooth.out',
+		'M0,0 C0.207,0.561 0.489,0.793 0.489,0.793 0.489,0.793 0.735,1 1,1 ',
+	)
+
 	const tl = gsap.timeline({ paused: true })
 
 	tl.from(
-		title.value.getElements(),
+		heroBackgroundText.value!.getElements(),
 		{
 			duration: 0.5,
 			ease: 'expo.inOut',
@@ -33,7 +49,7 @@ animate(() => {
 		'+=.5',
 	)
 		.from(
-			sectionTitle.value.getElements(),
+			sectionTitle.value!.getElements(),
 			{
 				duration: 0.5,
 				ease: 'expo.inOut',
@@ -45,7 +61,7 @@ animate(() => {
 			'<',
 		)
 		.from(
-			heroAbout.value.getElements(),
+			heroAbout.value!.getElements(),
 			{
 				duration: 1,
 				ease: 'expo.inOut',
@@ -57,7 +73,7 @@ animate(() => {
 			'<',
 		)
 		.from(
-			gradientTitle.value.$el,
+			gradientTitle.value!.$el,
 			{
 				duration: 1.5,
 				ease: 'expo.out',
@@ -70,7 +86,7 @@ animate(() => {
 			'-=0.8',
 		)
 		.from(
-			availabilityInfo.value,
+			availabilityInfo.value!.$el,
 			{
 				duration: 1.5,
 				ease: 'expo.out',
@@ -98,7 +114,7 @@ animate(() => {
 			'<',
 		)
 		.from(
-			cta.value.$el,
+			cta.value!.$el,
 			{
 				duration: 1.5,
 				ease: 'expo.out',
@@ -120,7 +136,7 @@ animate(() => {
 		},
 		{ immediate: true },
 	)
-}, container?.value)
+}, container.value)
 </script>
 
 <template>
@@ -132,7 +148,7 @@ animate(() => {
 			class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full text-center pointer-events-none select-none z-0"
 		>
 			<UISplitText
-				ref="title"
+				ref="heroBackgroundText"
 				as="h1"
 				class="text-[18vw] leading-none font-semibold text-white/5 tracking-tighter mix-blend-overlay"
 			>
@@ -144,23 +160,9 @@ animate(() => {
 			class="container mx-auto px-6 lg:px-12 relative z-10 grid lg:grid-cols-12 gap-12 items-end"
 		>
 			<div class="lg:col-span-5 mb-10 lg:mb-20">
-				<div
-					ref="availabilityInfo"
-					class="inline-flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-3 py-1.5 mb-8"
-				>
-					<span class="relative flex h-2 w-2">
-						<span
-							class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-500 opacity-75"
-						></span>
-						<span
-							class="relative inline-flex rounded-full h-2 w-2 bg-brand-500"
-						></span>
-					</span>
-					<span
-						class="text-xs font-medium text-neutral-300 tracking-wide uppercase"
-						>Available for Work</span
-					>
-				</div>
+				<UIPulseButtonText ref="availabilityInfo">
+					Available for Work
+				</UIPulseButtonText>
 				<UISplitText
 					ref="sectionTitle"
 					as="h1"

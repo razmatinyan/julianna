@@ -2,11 +2,10 @@
 const { gsap } = useGSAP()
 const { startEntrance } = useLoading()
 
-const navContainer = ref<HTMLElement | null>(null)
-const logoCircle = ref<HTMLElement | null>(null)
-const logoLetter = ref<HTMLElement | null>(null)
-const revealWrapper = ref()
-const hoveredLink = ref()
+const navContainer = useTemplateRef<HTMLElement | null>('navContainer')
+const logoCircle = useTemplateRef<HTMLElement | null>('logoCircle')
+const logoLetter = useTemplateRef<HTMLElement | null>('logoLetter')
+const revealWrapper = useTemplateRef<HTMLElement | null>('revealWrapper')
 
 const links = [
 	{ name: 'About', href: '#about' },
@@ -49,7 +48,7 @@ watch(startEntrance, val => {
 			)
 
 			.from(
-				revealWrapper.value.children,
+				revealWrapper.value!.children,
 				{
 					opacity: 0,
 					x: -20,
@@ -97,18 +96,11 @@ watch(startEntrance, val => {
 					<div class="h-4 w-[1px] bg-white/20 mr-5"></div>
 
 					<div class="flex items-center pr-4">
-						<NuxtLink
+						<NavigationLink
 							v-for="link in links"
 							:key="link.name"
-							:to="link.href"
-							@mouseenter="hoveredLink = link.name"
-							@mouseleave="hoveredLink = null"
-							class="text-sm font-medium text-neutral-400 hover:text-white transition-colors mr-6 last:mr-0"
-						>
-							<UIRollText :is-hovered="hoveredLink === link.name">
-								{{ link.name }}
-							</UIRollText>
-						</NuxtLink>
+							:link="link"
+						/>
 					</div>
 				</div>
 			</div>

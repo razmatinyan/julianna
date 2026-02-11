@@ -1,13 +1,24 @@
+<script setup lang="ts">
+import type { Component } from 'vue'
+import { UIRollText } from '@/components/UI'
+import { useElementHover } from '@vueuse/core'
+
+interface Props {
+	as?: Component | string
+	icon?: string
+}
+
+const { as = 'button', icon = 'lucide:arrow-right' } = defineProps<Props>()
+
+const root = useTemplateRef<HTMLElement | null>('root')
+const isHovered = useElementHover(root)
+</script>
+
 <template>
-	<component
-		:is="as"
-		class="group"
-		@mouseenter="isHovered = true"
-		@mouseleave="isHovered = false"
-	>
+	<component :is="as" ref="root" class="group">
 		<span class="dot"></span>
 		<span class="button-text font-medium text-sm">
-			<UIRollText ref="rollingText" :is-hovered="isHovered">
+			<UIRollText :is-hovered="isHovered">
 				<slot></slot>
 			</UIRollText>
 		</span>
@@ -16,19 +27,6 @@
 		</span>
 	</component>
 </template>
-
-<script setup lang="ts">
-import type { Component } from 'vue'
-
-interface Props {
-	as?: Component | string
-	icon?: string
-}
-
-const { as = 'button', icon = 'lucide:arrow-right' } = defineProps<Props>()
-const rollingText = ref()
-const isHovered = ref(false)
-</script>
 
 <style scoped>
 button {

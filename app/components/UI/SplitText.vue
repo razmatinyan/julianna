@@ -14,8 +14,8 @@ const {
 } = defineProps<Props>()
 
 const { SplitText } = useGSAP()
-const textRef = ref<HTMLElement | null>(null)
-let splitInstance: any = null
+const textRef = useTemplateRef<HTMLElement | null>('textRef')
+let splitInstance: SplitText | null = null
 
 onMounted(() => {
 	if (!textRef.value) return
@@ -27,7 +27,12 @@ onMounted(() => {
 })
 
 defineExpose({
-	getElements: () => splitInstance?.[type] || [],
+	getElements: (): HTMLElement[] => {
+		if (!splitInstance) return []
+
+		const elements = splitInstance[type as keyof SplitText]
+		return Array.isArray(elements) ? (elements as HTMLElement[]) : []
+	},
 })
 </script>
 
