@@ -32,9 +32,6 @@ animate(() => {
 	const tl = gsap.timeline({
 		scrollTrigger: {
 			trigger: container.value,
-			start: 'top 80%',
-			end: 'bottom 20%',
-			toggleActions: 'play none none reverse',
 		},
 	})
 
@@ -97,10 +94,10 @@ animate(() => {
 					scale: 1.05,
 					filter: 'blur(20px)',
 					autoAlpha: 0,
-					stagger: 0.1,
+					stagger: 0.065,
 					duration: 0.5,
 				},
-				'-=0.5',
+				'-=0.6',
 			)
 		})
 	}

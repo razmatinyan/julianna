@@ -11,7 +11,7 @@ const { as = 'div' } = defineProps<Props>()
 <template>
 	<component
 		:is="as"
-		class="gradient-wrapper text-5xl lg:text-7xl font-medium bg-clip-text text-transparent bg-gradient-to-r from-brand-500 to-white"
+		class="gradient-wrapper inline-block text-5xl lg:text-7xl font-medium bg-clip-text text-transparent bg-gradient-to-r from-brand-500 to-white"
 	>
 		<slot></slot>
 	</component>

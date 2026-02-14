@@ -1,6 +1,6 @@
 <script setup lang="ts">
-const { isLoaded, isTransitioned, startEntrance, finishLoading } = useLoading()
 const { gsap, CustomEase } = useGSAP()
+const { isLoaded, isTransitioned, startEntrance, finishLoading } = useLoading()
 
 onMounted(() => {
 	CustomEase.create('hop', '0.9, 0, 0.1, 1')

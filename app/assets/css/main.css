@@ -19,6 +19,10 @@ html {
   overflow: hidden;
 }
 
+html, body {
+  box-sizing: border-box;
+}
+
 html.lenis,
 html.lenis body {
   height: auto;

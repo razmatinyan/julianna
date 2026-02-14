@@ -25,3 +25,9 @@ const isHovered = useElementHover(el)
 		</UIRollText>
 	</NuxtLink>
 </template>
+
+<style scoped>
+.router-link-active {
+	@apply text-white;
+}
+</style>

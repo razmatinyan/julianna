@@ -8,6 +8,7 @@ export default defineNuxtPlugin(nuxtApp => {
 		anticipatePin: 1,
 		start: 'top 80%',
 		end: 'bottom 20%',
+		toggleActions: 'play none none reverse',
 		// markers: process.dev ? { fontSize: '12px', fontWeight: 'bold' } : false,
 	})
 

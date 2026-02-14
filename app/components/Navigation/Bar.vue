@@ -1,16 +1,19 @@
 <script setup lang="ts">
+import type { ComponentPublicInstance } from 'vue'
+
 const { gsap } = useGSAP()
 const { startEntrance } = useLoading()
 
 const navContainer = useTemplateRef<HTMLElement | null>('navContainer')
-const logoCircle = useTemplateRef<HTMLElement | null>('logoCircle')
+const logoCircle = useTemplateRef<ComponentPublicInstance | null>('logoCircle')
 const logoLetter = useTemplateRef<HTMLElement | null>('logoLetter')
 const revealWrapper = useTemplateRef<HTMLElement | null>('revealWrapper')
 
 const links = [
-	{ name: 'About', href: '#about' },
-	{ name: 'Work', href: '#work' },
-	{ name: 'Contact', href: '#contact' },
+	{ name: 'Home', href: '/' },
+	{ name: 'About', href: '/about' },
+	{ name: 'Works', href: '/works' },
+	{ name: 'Contact', href: '/contact' },
 ]
 
 watch(startEntrance, val => {
@@ -21,7 +24,7 @@ watch(startEntrance, val => {
 
 		tl.set(navContainer.value, { autoAlpha: 1 })
 
-		tl.from(logoCircle.value, {
+		tl.from(logoCircle.value!.$el, {
 			scale: 0,
 			duration: 0.8,
 			ease: 'back.out(1.7)',
@@ -65,14 +68,15 @@ watch(startEntrance, val => {
 	<header>
 		<nav
 			ref="navContainer"
-			class="fixed top-8 left-1/2 -translate-x-1/2 z-40 invisible"
+			class="fixed top-8 left-1/2 -translate-x-1/2 z-40"
 		>
 			<div
 				class="bg-neutral-900/80 backdrop-blur-xl border border-white/10 rounded-full p-2 flex items-center shadow-2xl"
 			>
-				<div
+				<NuxtLink
+					to="/"
 					ref="logoCircle"
-					class="bg-white/10 p-2 rounded-full flex-shrink-0"
+					class="group bg-white/10 p-2 rounded-full flex-shrink-0 flex"
 				>
 					<span
 						ref="logoLetter"
@@ -80,22 +84,14 @@ watch(startEntrance, val => {
 					>
 						J
 					</span>
-				</div>
+				</NuxtLink>
 
 				<div
 					ref="revealWrapper"
 					class="flex items-center overflow-hidden whitespace-nowrap"
 					style="width: 0px"
 				>
-					<span
-						class="text-sm font-medium text-white tracking-tight ml-4 mr-5"
-					>
-						Julianna
-					</span>
-
-					<div class="h-4 w-[1px] bg-white/20 mr-5"></div>
-
-					<div class="flex items-center pr-4">
+					<div class="flex items-center px-4">
 						<NavigationLink
 							v-for="link in links"
 							:key="link.name"

@@ -1,19 +1,75 @@
 <script setup lang="ts">
-const { animate, $gsap: gsap } = useGsap()
-const container = ref(null)
-const title = ref(null)
+import { UIGradientText, UISplitText, UIButton } from '../UI'
+
+const { animate, gsap } = useGSAP()
+const container = useTemplateRef<HTMLElement | null>('container')
+const sectionTitle = useTemplateRef<InstanceType<typeof UISplitText> | null>(
+	'sectionTitle',
+)
+const sectionText = useTemplateRef<InstanceType<typeof UISplitText> | null>(
+	'sectionText',
+)
+const gradientText = useTemplateRef<InstanceType<typeof UIGradientText> | null>(
+	'gradientText',
+)
+const cta = useTemplateRef<InstanceType<typeof UIButton> | null>('cta')
 
 animate(() => {
-	gsap.set(title.value, { autoAlpha: 0, y: 50 })
-
 	const tl = gsap.timeline({
-		delay: 0.1,
 		scrollTrigger: {
 			trigger: container.value,
-			start: 'top 80%',
 		},
 	})
-}, container)
+
+	tl.from(sectionTitle.value!.getElements(), {
+		duration: 0.7,
+		ease: 'expo.inOut',
+		y: 10,
+		autoAlpha: 0,
+		stagger: 0.025,
+		filter: 'blur(10px)',
+	})
+		.from(
+			gradientText.value!.$el,
+			{
+				duration: 1.2,
+				delay: 0.8,
+				ease: 'expo.out',
+				z: 500,
+				rotationX: -45,
+				autoAlpha: 0,
+				filter: 'blur(20px)',
+				scale: 1.1,
+			},
+			'<',
+		)
+		.from(
+			sectionText.value!.getElements(),
+			{
+				duration: 1.2,
+				ease: 'expo.inOut',
+				y: 10,
+				autoAlpha: 0,
+				stagger: 0.025,
+				filter: 'blur(20px)',
+			},
+			'<',
+		)
+		.from(
+			cta.value!.$el,
+			{
+				duration: 1.5,
+				ease: 'expo.out',
+				z: 500,
+				rotationX: -45,
+				y: 20,
+				autoAlpha: 0,
+				filter: 'blur(20px)',
+				scale: 1.2,
+			},
+			'-=.8',
+		)
+}, container.value)
 </script>
 
 <template>
@@ -28,29 +84,30 @@ animate(() => {
 		<div
 			class="container mx-auto px-6 lg:px-12 text-center mb-16 relative z-10"
 		>
-			<h2
-				ref="title"
-				class="text-4xl lg:text-5xl font-medium text-white tracking-tighter mb-4"
+			<UISplitText
+				as="h2"
+				ref="sectionTitle"
+				class="text-4xl lg:text-6xl font-medium text-white tracking-tighter leading-[1.1]"
 			>
-				Let's Create Something <br />
+				Let's Create Something
+			</UISplitText>
+			<UIGradientText as="h2" ref="gradientText" class="mb-4">
 				Exceptional
-			</h2>
-			<p class="text-lg text-neutral-400 max-w-xl mx-auto mb-8">
+			</UIGradientText>
+
+			<UISplitText
+				as="p"
+				ref="sectionText"
+				type="words"
+				class="text-lg text-neutral-400 max-w-xl mx-auto mb-8"
+			>
 				Let's collaborate to create a bold brand or seamless digital
 				experience. Get in touch!
-			</p>
+			</UISplitText>
 
-			<button
-				class="inline-flex items-center gap-2 bg-brand-600 hover:bg-brand-500 text-white rounded-full pl-2 pr-6 py-2 transition-all"
-			>
-				<span class="bg-white text-brand-600 rounded-full p-2">
-					<Icon
-						name="lucide:arrow-right"
-						class="block w-4 h-4"
-					></Icon>
-				</span>
-				<span class="font-medium text-sm">Contact me</span>
-			</button>
+			<UIButton ref="cta" class="mx-auto uppercase">
+				Contact me
+			</UIButton>
 		</div>
 
 		<!-- Fan Effect Images -->
