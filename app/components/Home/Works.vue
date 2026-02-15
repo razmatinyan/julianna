@@ -2,6 +2,7 @@
 import { UIGradientText, UISplitText, UIButton } from '../UI'
 
 const { animate, gsap } = useGSAP()
+
 const container = useTemplateRef<HTMLElement | null>('container')
 const sectionTitle = useTemplateRef<InstanceType<typeof UISplitText> | null>(
 	'sectionTitle',
@@ -13,6 +14,20 @@ const gradientText = useTemplateRef<InstanceType<typeof UIGradientText> | null>(
 	'gradientText',
 )
 const cta = useTemplateRef<InstanceType<typeof UIButton> | null>('cta')
+
+interface GalleryItem {
+	id: number
+	src: string
+}
+
+const galleryItems: GalleryItem[] = []
+
+for (let i = 0; i < 10; i++) {
+	galleryItems.push({
+		id: i + 1,
+		src: 'https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=600',
+	})
+}
 
 animate(() => {
 	const tl = gsap.timeline({
@@ -110,51 +125,7 @@ animate(() => {
 			</UIButton>
 		</div>
 
-		<!-- Fan Effect Images -->
-		<div
-			class="flex justify-center items-center gap-4 lg:gap-8 scale-90 lg:scale-100 opacity-80 hover:opacity-100 transition-opacity duration-500"
-		>
-			<div
-				class="w-48 h-64 lg:w-64 lg:h-80 bg-neutral-800 rounded-2xl rotate-[-12deg] translate-y-12 overflow-hidden border border-white/10 shadow-2xl"
-			>
-				<img
-					src="https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&amp;w=600&amp;auto=format&amp;fit=crop"
-					class="w-full h-full object-cover"
-				/>
-			</div>
-			<div
-				class="w-48 h-64 lg:w-64 lg:h-80 bg-neutral-800 rounded-2xl rotate-[-6deg] translate-y-4 overflow-hidden border border-white/10 shadow-2xl z-10"
-			>
-				<img
-					src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&amp;w=600&amp;auto=format&amp;fit=crop"
-					class="w-full h-full object-cover"
-				/>
-			</div>
-			<div
-				class="w-48 h-64 lg:w-64 lg:h-80 bg-neutral-800 rounded-2xl rotate-0 z-20 overflow-hidden border border-white/10 shadow-2xl shadow-brand-900/20"
-			>
-				<img
-					src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1200&auto=format&fit=crop"
-					class="w-full h-full object-cover"
-				/>
-			</div>
-			<div
-				class="w-48 h-64 lg:w-64 lg:h-80 bg-neutral-800 rounded-2xl rotate-[6deg] translate-y-4 overflow-hidden border border-white/10 shadow-2xl z-10"
-			>
-				<img
-					src="https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?q=80&amp;w=600&amp;auto=format&amp;fit=crop"
-					class="w-full h-full object-cover"
-				/>
-			</div>
-			<div
-				class="w-48 h-64 lg:w-64 lg:h-80 bg-neutral-800 rounded-2xl rotate-[12deg] translate-y-12 overflow-hidden border border-white/10 shadow-2xl"
-			>
-				<img
-					src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=600&auto=format&fit=crop"
-					class="w-full h-full object-cover"
-				/>
-			</div>
-		</div>
+		<InfiniteImageGallery :items="galleryItems" />
 	</section>
 </template>
 

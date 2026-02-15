@@ -4,4 +4,6 @@
 	<div id="__layout">
 		<slot />
 	</div>
+
+	<NavigationFooter />
 </template>

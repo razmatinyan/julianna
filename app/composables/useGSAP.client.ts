@@ -3,9 +3,10 @@ import { gsap } from 'gsap'
 import { CustomEase } from 'gsap/all'
 import { SplitText } from 'gsap/SplitText'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { Draggable } from 'gsap/all'
 
 if (process.client) {
-	gsap.registerPlugin(ScrollTrigger, SplitText, CustomEase)
+	gsap.registerPlugin(ScrollTrigger, SplitText, CustomEase, Draggable)
 }
 
 export const useGSAP = () => {
@@ -27,5 +28,5 @@ export const useGSAP = () => {
 		})
 	}
 
-	return { gsap, SplitText, ScrollTrigger, CustomEase, animate }
+	return { gsap, SplitText, ScrollTrigger, CustomEase, Draggable, animate }
 }
