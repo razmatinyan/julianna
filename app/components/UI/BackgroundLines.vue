@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {
-	Clock,
+	Timer,
 	Mesh,
 	OrthographicCamera,
 	PlaneGeometry,
@@ -395,7 +395,7 @@ const setup = () => {
 
 		stops.forEach((hex, i) => {
 			const color = hexToVec3(hex)
-			uniforms.lineGradient.value[i].set(color.x, color.y, color.z)
+			uniforms.lineGradient.value[i]?.set(color.x, color.y, color.z)
 		})
 	}
 
@@ -409,7 +409,7 @@ const setup = () => {
 	const mesh = new Mesh(geometry, material)
 	scene.add(mesh)
 
-	const clock = new Clock()
+	const timer = new Timer()
 
 	const setSize = () => {
 		const el = containerRef.value!
@@ -466,7 +466,8 @@ const setup = () => {
 
 	let raf = 0
 	const renderLoop = () => {
-		uniforms.iTime.value = clock.getElapsedTime()
+		timer.update()
+		uniforms.iTime.value = timer.getElapsed()
 
 		if (props.interactive) {
 			currentMouseRef.value.lerp(targetMouseRef.value, props.mouseDamping)

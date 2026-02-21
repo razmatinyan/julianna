@@ -92,7 +92,7 @@ const socialLinks = [
 					Let’s build something extraordinary together. Reach out and
 					tell me about your next big project.
 				</p>
-				<UIButton class="pointer-events-auto">
+				<UIButton class="pointer-events-auto uppercase">
 					Start a Project
 				</UIButton>
 			</div>
@@ -111,10 +111,10 @@ const socialLinks = [
 				<div
 					class="flex items-center gap-6 md:gap-8 order-1 md:order-2"
 				>
-					<a
+					<NuxtLink
 						v-for="link in socialLinks"
 						:key="link.name"
-						:href="link.url"
+						:to="link.url"
 						:aria-label="link.name"
 						class="relative flex items-center gap-1 group text-neutral-400 hover:text-white transition-colors duration-300 z-10"
 					>
@@ -126,7 +126,7 @@ const socialLinks = [
 						<span
 							class="absolute -bottom-1 left-0 w-0 h-[1.5px] bg-white transition-all duration-300 ease-out group-hover:w-full"
 						></span>
-					</a>
+					</NuxtLink>
 				</div>
 			</div>
 		</div>
