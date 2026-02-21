@@ -145,7 +145,7 @@ animate(() => {
 					as="p"
 					type="lines"
 					ref="sectionDescription"
-					class="text-xl text-neutral-400 leading-relaxed font-light"
+					class="text-xl text-white-800 leading-relaxed font-light"
 				>
 					I'm Julianna, a London-based Brand and UI/UX Designer
 					passionate about crafting visually compelling identities and
@@ -156,7 +156,7 @@ animate(() => {
 				</UISplitText>
 
 				<div class="features grid grid-cols-2 gap-6 pt-4">
-					<AboutFeature
+					<HomeAboutFeature
 						v-for="data in sectionData"
 						:key="data.id"
 						:title="data.title"

@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 interface GalleryItem {
 	id: number
-	src: string
+	src: string | undefined
 }
 
 const props = defineProps<{
@@ -19,9 +19,13 @@ const props = defineProps<{
 			<div
 				v-for="item in items"
 				:key="item.id"
-				class="image flex-[0_0_18em] h-full"
+				class="image flex-[0_0_26em] h-full"
 			>
-				<NuxtImg :src="item.src" format="webp" />
+				<NuxtImg
+					:src="item.src"
+					format="webp"
+					class="select-none pointer-events-none"
+				/>
 			</div>
 		</div>
 	</div>

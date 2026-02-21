@@ -1,5 +1,10 @@
 <script setup lang="ts">
-import { UIGradientText, UISplitText, UIButton } from '../UI'
+import {
+	UIGradientText,
+	UISplitText,
+	UIButton,
+	UIInfiniteImageGallery,
+} from '../UI'
 
 const { animate, gsap } = useGSAP()
 
@@ -14,20 +19,6 @@ const gradientText = useTemplateRef<InstanceType<typeof UIGradientText> | null>(
 	'gradientText',
 )
 const cta = useTemplateRef<InstanceType<typeof UIButton> | null>('cta')
-
-interface GalleryItem {
-	id: number
-	src: string
-}
-
-const galleryItems: GalleryItem[] = []
-
-for (let i = 0; i < 10; i++) {
-	galleryItems.push({
-		id: i + 1,
-		src: 'https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=600',
-	})
-}
 
 animate(() => {
 	const tl = gsap.timeline({
@@ -50,8 +41,6 @@ animate(() => {
 				duration: 1.2,
 				delay: 0.8,
 				ease: 'expo.out',
-				z: 500,
-				rotationX: -45,
 				autoAlpha: 0,
 				filter: 'blur(20px)',
 				scale: 1.1,
@@ -75,8 +64,6 @@ animate(() => {
 			{
 				duration: 1.5,
 				ease: 'expo.out',
-				z: 500,
-				rotationX: -45,
 				y: 20,
 				autoAlpha: 0,
 				filter: 'blur(20px)',
@@ -124,8 +111,6 @@ animate(() => {
 				Contact me
 			</UIButton>
 		</div>
-
-		<InfiniteImageGallery :items="galleryItems" />
 	</section>
 </template>
 

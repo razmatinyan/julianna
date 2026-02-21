@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import Hero from '@/components/Home/Hero.vue'
-import About from '@/components/Home/About.vue'
-import Works from '@/components/Home/Works.vue'
-import Testemonials from '@/components/Home/Testemonials.vue'
+import HeroSection from '@/components/Home/HeroSection.vue'
+import AboutSection from '@/components/Home/AboutSection.vue'
+import WorkSection from '@/components/Home/WorkSection.vue'
+import TestemonialSection from '@/components/Home/TestemonialSection.vue'
 </script>
 
 <template>
-	<Hero />
-	<About />
-	<Works />
-	<Testemonials />
+	<HeroSection />
+	<AboutSection />
+	<WorkSection />
+	<TestemonialSection />
 </template>

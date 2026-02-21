@@ -1,9 +1,12 @@
 <template>
-	<NavigationBar />
+	<div class="flex flex-col min-h-screen relative isolate">
+		<UIBackgroundBlob />
+		<NavigationBar />
 
-	<div id="__layout">
-		<slot />
+		<div id="__layout" class="flex-1">
+			<slot />
+		</div>
+
+		<NavigationFooter />
 	</div>
-
-	<NavigationFooter />
 </template>
