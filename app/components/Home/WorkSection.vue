@@ -1,10 +1,5 @@
 <script setup lang="ts">
-import {
-	UIGradientText,
-	UISplitText,
-	UIButton,
-	UIInfiniteImageGallery,
-} from '../UI'
+import { UIGradientText, UISplitText, UIButton } from '../UI'
 
 const { animate, gsap } = useGSAP()
 

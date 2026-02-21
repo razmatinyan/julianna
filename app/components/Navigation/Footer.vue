@@ -45,38 +45,13 @@ animate(() => {
 			'<',
 		)
 	}
-
-	tl.from(
-		'.social-link',
-		{
-			duration: 0.6,
-			ease: 'back.out(1.7)',
-			y: 20,
-			autoAlpha: 0,
-			stagger: 0.1,
-		},
-		'-=0.5',
-	)
-
-	if (bottomBar.value) {
-		tl.from(
-			bottomBar.value,
-			{
-				duration: 1,
-				ease: 'power3.out',
-				y: 20,
-				autoAlpha: 0,
-			},
-			'<',
-		)
-	}
 }, footerContainer)
 
 const socialLinks = [
-	{ name: 'Twitter', icon: 'lucide:twitter', url: '#' },
-	{ name: 'LinkedIn', icon: 'lucide:linkedin', url: '#' },
-	{ name: 'Instagram', icon: 'lucide:instagram', url: '#' },
-	{ name: 'Dribbble', icon: 'lucide:dribbble', url: '#' },
+	{ name: 'Twitter', url: '#' },
+	{ name: 'LinkedIn', url: '#' },
+	{ name: 'Instagram', url: '#' },
+	{ name: 'Dribbble', url: '#' },
 ]
 </script>
 
@@ -85,13 +60,15 @@ const socialLinks = [
 		ref="footerContainer"
 		class="relative overflow-hidden bg-neutral-950 pt-32 pb-12 border-t border-white/10"
 	>
-		<!-- Background Decorative Blob -->
-		<div
-			class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-96 bg-brand-500/10 blur-[100px] rounded-full opacity-50 pointer-events-none"
-		></div>
+		<!-- Background Floating Lines -->
+		<div class="absolute inset-0 z-0 opacity-40">
+			<UIBackgroundLines
+				:lines-gradient="['#ff6b2c', '#e65214', '#ff6b2c']"
+			/>
+		</div>
 
 		<div
-			class="container mx-auto px-6 lg:px-12 flex flex-col justify-between h-full relative z-10"
+			class="container mx-auto px-6 lg:px-12 flex flex-col justify-between h-full relative z-10 pointer-events-none"
 		>
 			<!-- Main CTA Area -->
 			<div class="flex flex-col items-center text-center mb-24">
@@ -115,13 +92,15 @@ const socialLinks = [
 					Let’s build something extraordinary together. Reach out and
 					tell me about your next big project.
 				</p>
-				<UIButton class=""> Start a Project </UIButton>
+				<UIButton class="pointer-events-auto">
+					Start a Project
+				</UIButton>
 			</div>
 
 			<!-- Bottom Bar & Socials -->
 			<div
 				ref="bottomBar"
-				class="flex flex-col md:flex-row justify-between items-center text-neutral-500 text-sm border-t border-white/5 pt-8 mt-auto"
+				class="relative z-20 flex flex-col md:flex-row justify-between items-center text-neutral-500 text-sm border-t border-white/5 pt-8 mt-auto pointer-events-auto"
 			>
 				<p
 					class="order-2 md:order-1 mt-6 md:mt-0 font-light tracking-wide"
@@ -130,16 +109,23 @@ const socialLinks = [
 				</p>
 
 				<div
-					class="flex items-center gap-4 md:gap-6 order-1 md:order-2"
+					class="flex items-center gap-6 md:gap-8 order-1 md:order-2"
 				>
 					<a
 						v-for="link in socialLinks"
 						:key="link.name"
 						:href="link.url"
 						:aria-label="link.name"
-						class="social-link w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-neutral-400 bg-neutral-900/50 hover:bg-brand-500/20 hover:text-brand-400 hover:border-brand-500/50 transition-all duration-300 hover:scale-110 hover:-translate-y-1 active:scale-95 focus:ring-2 focus:ring-brand-500 backdrop-blur-sm"
+						class="relative flex items-center gap-1 group text-neutral-400 hover:text-white transition-colors duration-300 z-10"
 					>
-						<Icon :name="link.icon" class="w-5 h-5" />
+						<span>{{ link.name }}</span>
+						<Icon
+							name="lucide:arrow-up-right"
+							class="w-3.5 h-3.5 opacity-50 group-hover:opacity-100 transition-opacity"
+						/>
+						<span
+							class="absolute -bottom-1 left-0 w-0 h-[1.5px] bg-white transition-all duration-300 ease-out group-hover:w-full"
+						></span>
 					</a>
 				</div>
 			</div>

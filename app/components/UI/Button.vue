@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import type { Component } from 'vue'
+
+defineOptions({ inheritAttrs: false })
 import { UIRollText } from '@/components/UI'
 import { useElementHover } from '@vueuse/core'
 
@@ -15,7 +17,7 @@ const isHovered = useElementHover(root)
 </script>
 
 <template>
-	<component :is="as" ref="root" class="group">
+	<component :is="as" ref="root" class="group" v-bind="$attrs">
 		<span class="dot"></span>
 		<span class="button-text font-medium text-sm">
 			<UIRollText :is-hovered="isHovered">
