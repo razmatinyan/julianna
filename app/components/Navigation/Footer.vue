@@ -62,9 +62,9 @@ const socialLinks = [
 	>
 		<!-- Background Floating Lines -->
 		<div class="absolute inset-0 z-0 opacity-40">
-			<UIBackgroundLines
+			<!-- <UIBackgroundLines
 				:lines-gradient="['#ff6b2c', '#e65214', '#ff6b2c']"
-			/>
+			/> -->
 		</div>
 
 		<div
@@ -109,24 +109,13 @@ const socialLinks = [
 				</p>
 
 				<div
-					class="flex items-center gap-6 md:gap-8 order-1 md:order-2"
+					class="flex flex-wrap justify-center items-center gap-6 md:gap-8 order-1 md:order-2"
 				>
-					<NuxtLink
+					<NavigationFooterLink
 						v-for="link in socialLinks"
 						:key="link.name"
-						:to="link.url"
-						:aria-label="link.name"
-						class="relative flex items-center gap-1 group text-neutral-400 hover:text-white transition-colors duration-300 z-10"
-					>
-						<span>{{ link.name }}</span>
-						<Icon
-							name="lucide:arrow-up-right"
-							class="w-3.5 h-3.5 opacity-50 group-hover:opacity-100 transition-opacity"
-						/>
-						<span
-							class="absolute -bottom-1 left-0 w-0 h-[1.5px] bg-white transition-all duration-300 ease-out group-hover:w-full"
-						></span>
-					</NuxtLink>
+						:link="link"
+					/>
 				</div>
 			</div>
 		</div>

@@ -6,6 +6,7 @@ interface LinkProps {
 		name: string
 		href: string
 	}
+	external?: boolean
 }
 
 const props = defineProps<LinkProps>()
@@ -18,6 +19,7 @@ const isHovered = useElementHover(el)
 	<NuxtLink
 		ref="linkRef"
 		:to="link.href"
+		:external="external"
 		class="text-sm font-medium text-neutral-400 hover:text-white transition-colors mr-6 last:mr-0"
 	>
 		<UIRollText :is-hovered="isHovered">

@@ -1,6 +1,13 @@
 <script setup lang="ts">
 import type { ComponentPublicInstance } from 'vue'
 
+const props = defineProps({
+	forceExternal: {
+		type: Boolean,
+		default: false,
+	},
+})
+
 const { gsap } = useGSAP()
 const { startEntrance } = useLoading()
 
@@ -11,37 +18,50 @@ const revealWrapper = useTemplateRef<HTMLElement | null>('revealWrapper')
 
 const links = [
 	{ name: 'Home', href: '/' },
-	{ name: 'About', href: '/about' },
-	{ name: 'Works', href: '/works' },
+	{ name: 'About', href: '/alsjkfvkjvasko' },
 	{ name: 'Contact', href: '/contact' },
 ]
 
+let navTl: gsap.core.Timeline | null = null
+
 watch(startEntrance, val => {
 	if (val) {
-		const tl = gsap.timeline({
+		if (navTl) navTl.kill()
+		navTl = gsap.timeline({
 			defaults: { ease: 'expo.out' },
 		})
 
-		tl.set(navContainer.value, { autoAlpha: 1 })
+		navTl.set(navContainer.value, { autoAlpha: 1 })
 
-		tl.from(logoCircle.value!.$el, {
-			scale: 0,
-			duration: 0.8,
-			ease: 'back.out(1.7)',
-			delay: 1,
-		})
-			.from(
+		navTl
+			.fromTo(
+				logoCircle.value!.$el,
+				{ scale: 0 },
+				{
+					scale: 1,
+					duration: 0.8,
+					ease: 'back.out(1.7)',
+					delay: 1,
+				},
+			)
+			.fromTo(
 				logoLetter.value,
 				{
 					opacity: 0,
 					y: 10,
+				},
+				{
+					opacity: 1,
+					y: 0,
 					duration: 0.5,
 				},
 				'-=0.4',
 			)
-
-			.to(
+			.fromTo(
 				revealWrapper.value,
+				{
+					width: '0px',
+				},
 				{
 					width: 'auto',
 					duration: 1.4,
@@ -49,16 +69,62 @@ watch(startEntrance, val => {
 				},
 				'-=0.2',
 			)
-
-			.from(
+			.fromTo(
 				revealWrapper.value!.children,
 				{
 					opacity: 0,
 					x: -20,
+				},
+				{
+					opacity: 1,
+					x: 0,
 					stagger: 0.05,
 					duration: 0.8,
 				},
 				'-=0.8',
+			)
+	} else {
+		if (navTl) navTl.kill()
+		navTl = gsap.timeline({
+			defaults: { ease: 'expo.in' },
+			onComplete: () => {
+				gsap.set(navContainer.value, { autoAlpha: 0 })
+			},
+		})
+
+		navTl
+			.to(revealWrapper.value!.children, {
+				opacity: 0,
+				x: -20,
+				stagger: 0.05,
+				duration: 0.4,
+			})
+			.to(
+				revealWrapper.value,
+				{
+					width: '0px',
+					duration: 0.6,
+					ease: 'expo.inOut',
+				},
+				'-=0.2',
+			)
+			.to(
+				logoLetter.value,
+				{
+					opacity: 0,
+					y: 10,
+					duration: 0.3,
+				},
+				'-=0.4',
+			)
+			.to(
+				logoCircle.value!.$el,
+				{
+					scale: 0,
+					duration: 0.5,
+					ease: 'back.in(1.7)',
+				},
+				'-=0.2',
 			)
 	}
 })
@@ -76,6 +142,7 @@ watch(startEntrance, val => {
 				<NuxtLink
 					to="/"
 					ref="logoCircle"
+					:external="forceExternal"
 					class="group bg-white/10 p-2 rounded-full flex-shrink-0 flex"
 				>
 					<span
@@ -96,6 +163,7 @@ watch(startEntrance, val => {
 							v-for="link in links"
 							:key="link.name"
 							:link="link"
+							:external="forceExternal"
 						/>
 					</div>
 				</div>

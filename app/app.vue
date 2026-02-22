@@ -1,5 +1,5 @@
 <template>
-	<Loading v-if="!isTransitioned" />
+	<Loading />
 
 	<NuxtLayout>
 		<NuxtPage />
