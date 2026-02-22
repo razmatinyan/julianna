@@ -18,7 +18,7 @@ const revealWrapper = useTemplateRef<HTMLElement | null>('revealWrapper')
 
 const links = [
 	{ name: 'Home', href: '/' },
-	{ name: 'About', href: '/alsjkfvkjvasko' },
+	{ name: 'About', href: '/about' },
 	{ name: 'Contact', href: '/contact' },
 ]
 

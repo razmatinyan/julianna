@@ -23,6 +23,5 @@ logs
 .env.*
 !.env.example
 
-# Custom files
-design.html
-old.ts
+.agent
+.agents
