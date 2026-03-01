@@ -129,16 +129,20 @@ animate(() => {
 					as="h2"
 					ref="sectionTitle"
 					type="words"
-					class="text-4xl lg:text-6xl font-medium text-white tracking-tighter leading-[1.1]"
+					class="text-5xl lg:text-7xl font-serif font-medium text-neutral-100 tracking-tighter leading-[1]"
 				>
 					Driving Measurable <br />
-					<span class="text-neutral-500"
+					<span class="text-neutral-500 font-serif-italic"
 						>Revenue &amp; Strategic</span
 					>
 					<br />
 					Business Growth <br />
 				</UISplitText>
-				<UIGradientText as="p" ref="gradientText">
+				<UIGradientText
+					as="p"
+					ref="gradientText"
+					class="text-6xl lg:text-8xl font-serif-italic tracking-tighter text-brand-400 mt-2"
+				>
 					That Scales
 				</UIGradientText>
 			</div>
@@ -147,7 +151,7 @@ animate(() => {
 					as="p"
 					type="lines"
 					ref="sectionDescription"
-					class="text-xl text-white-800 leading-relaxed font-light"
+					class="text-xl text-neutral-400 leading-relaxed font-light"
 				>
 					I'm Julianna, an Armenia-based Sales Manager passionate
 					about building high-performing sales pipelines and forging
@@ -157,7 +161,9 @@ animate(() => {
 					your sales strategy together.
 				</UISplitText>
 
-				<div class="features grid grid-cols-2 gap-6 pt-4">
+				<div
+					class="features grid md:grid-cols-2 gap-8 border-t border-white/5 pt-8 mt-8"
+				>
 					<HomeAboutFeature
 						v-for="data in sectionData"
 						:key="data.id"

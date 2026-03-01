@@ -150,7 +150,7 @@ animate(() => {
 			<UISplitText
 				ref="heroBackgroundText"
 				as="p"
-				class="text-[18vw] leading-none font-semibold text-white/5 tracking-tighter mix-blend-overlay font-serif-italic"
+				class="text-[20vw] leading-none font-bold text-outline opacity-20 tracking-tighter mix-blend-overlay font-serif-italic"
 			>
 				Julianna
 			</UISplitText>
@@ -166,7 +166,7 @@ animate(() => {
 				<UISplitText
 					ref="sectionTitle"
 					as="h1"
-					class="section-title text-5xl lg:text-7xl font-medium text-white tracking-tighter leading-[1.1]"
+					class="section-title text-6xl lg:text-8xl font-medium text-neutral-100 tracking-tighter leading-[1] font-serif mb-2"
 				>
 					Sales Manager <br />
 					based <br />
@@ -174,7 +174,7 @@ animate(() => {
 				<UIGradientText
 					as="p"
 					ref="gradientTitle"
-					class="gradient-wrapper text-5xl lg:text-7xl font-medium bg-clip-text text-transparent bg-gradient-to-r from-brand-500 to-white"
+					class="gradient-wrapper text-6xl lg:text-8xl font-serif-italic tracking-tighter text-brand-400"
 				>
 					in Armenia
 				</UIGradientText>
@@ -185,7 +185,7 @@ animate(() => {
 				class="image-container lg:col-span-4 relative flex justify-center lg:justify-end lg:-mb-20"
 			>
 				<div
-					class="relative w-full max-w-md aspect-[3/4] rounded-t-[10rem] overflow-hidden bg-neutral-900 border-x border-t border-white/10 shadow-2xl shadow-brand-500/10"
+					class="relative w-full max-w-md aspect-[3/4] rounded-t-full rounded-b-[4rem] overflow-hidden bg-neutral-900 border border-white/5 shadow-2xl shadow-brand-500/20"
 				>
 					<NuxtImg
 						format="webp"
@@ -207,14 +207,17 @@ animate(() => {
 					as="p"
 					type="words"
 					ref="heroAbout"
-					class="text-lg text-neutral-400 mb-8 leading-relaxed"
+					class="text-lg text-neutral-400 font-light mb-10 leading-relaxed max-w-md"
 				>
 					Hi, I'm Julianna. A results-driven Sales Manager
 					specializing in B2B growth, strategic client acquisition,
 					and maximizing revenue.
 				</UISplitText>
 				<a href="mailto:hello@example.com">
-					<UIButton ref="cta" class="uppercase">
+					<UIButton
+						ref="cta"
+						class="uppercase tracking-widest text-xs py-4 px-8"
+					>
 						Let's Connect
 					</UIButton>
 				</a>

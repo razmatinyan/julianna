@@ -104,22 +104,26 @@ const reviews = [
 
 <template>
 	<section ref="container" class="py-32 container mx-auto px-6 lg:px-12">
-		<div class="mb-16">
+		<div class="mb-24 flex flex-col items-center text-center">
 			<UISplitText
 				as="h2"
 				ref="sectionTitle"
-				class="text-4xl lg:text-6xl font-medium text-white tracking-tighter leading-[1.1]"
+				class="text-5xl lg:text-7xl font-serif font-medium text-neutral-100 tracking-tighter leading-[1]"
 			>
 				Trusted by Partners,
 			</UISplitText>
-			<UIGradientText as="h2" ref="gradientText" class="mb-4">
+			<UIGradientText
+				as="h2"
+				ref="gradientText"
+				class="text-6xl lg:text-8xl font-serif-italic tracking-tighter text-brand-400 mt-2 mb-8"
+			>
 				Proven by Results
 			</UIGradientText>
 			<UISplitText
 				as="p"
 				ref="sectionText"
 				type="words"
-				class="text-lg text-neutral-400 max-w-2xl"
+				class="text-lg text-neutral-400 max-w-2xl font-light leading-relaxed"
 			>
 				Effective sales management goes beyond closing deals—it builds
 				lasting partnerships. Hear from clients who have experienced the

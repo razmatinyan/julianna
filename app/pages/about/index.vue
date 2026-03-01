@@ -193,7 +193,7 @@ animate(() => {
 					<UISplitText
 						ref="pageTitle"
 						as="h1"
-						class="text-5xl lg:text-7xl font-medium text-white tracking-tighter leading-[1.1] mb-2"
+						class="text-6xl lg:text-8xl font-serif font-medium text-neutral-100 tracking-tighter leading-[1]"
 					>
 						Beyond Numbers. <br />
 						Building Lasting <br />
@@ -201,7 +201,7 @@ animate(() => {
 					<UIGradientText
 						as="p"
 						ref="gradientText"
-						class="text-5xl lg:text-7xl font-medium bg-clip-text text-transparent bg-gradient-to-r from-brand-500 to-white mb-10"
+						class="text-7xl lg:text-9xl font-serif-italic tracking-tighter text-brand-400 mt-2 mb-12"
 					>
 						Partnerships.
 					</UIGradientText>
@@ -244,15 +244,15 @@ animate(() => {
 			</div>
 
 			<!-- Core Expertise Section -->
-			<div class="max-w-4xl pt-12">
+			<div class="max-w-5xl pt-12">
 				<UISplitText
 					ref="expertiseTitle"
 					as="h2"
-					class="text-3xl font-medium text-white mb-12 tracking-tight"
+					class="text-4xl lg:text-5xl font-serif font-medium text-white mb-16 tracking-tighter"
 				>
 					Core Expertise
 				</UISplitText>
-				<div class="space-y-12">
+				<div class="space-y-16">
 					<div
 						v-for="data in experienceData"
 						:key="data.id"

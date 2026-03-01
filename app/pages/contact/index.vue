@@ -134,21 +134,21 @@ animate(() => {
 			<div
 				class="max-w-4xl mx-auto text-center flex flex-col items-center"
 			>
-				<UIPulseButtonText ref="availabilityInfo" class="mb-8">
+				<UIPulseButtonText ref="availabilityInfo" class="mb-12">
 					Available for New Opportunities
 				</UIPulseButtonText>
 
 				<UISplitText
 					ref="pageTitle"
 					as="h1"
-					class="text-5xl lg:text-7xl md:text-8xl font-medium text-white tracking-tighter leading-[1.1] mb-2"
+					class="text-6xl lg:text-8xl font-serif font-medium text-neutral-100 tracking-tighter leading-[1]"
 				>
 					Let's Create<br />
 				</UISplitText>
 				<UIGradientText
 					as="p"
 					ref="gradientText"
-					class="text-5xl lg:text-7xl md:text-8xl font-medium bg-clip-text text-transparent bg-gradient-to-r from-brand-500 to-white mb-10"
+					class="text-7xl lg:text-9xl font-serif-italic tracking-tighter text-brand-400 mt-2 mb-12"
 				>
 					Something Great.
 				</UIGradientText>
@@ -172,7 +172,7 @@ animate(() => {
 					<a href="mailto:hello@example.com" class="block">
 						<UIButton
 							ref="emailButton"
-							class="uppercase px-8 py-4 text-lg"
+							class="uppercase tracking-widest text-sm py-5 px-10"
 						>
 							Send an Email
 						</UIButton>
@@ -185,7 +185,7 @@ animate(() => {
 					>
 						<UIButton
 							ref="linkedinButton"
-							class="uppercase px-8 py-4 text-lg !bg-transparent !border !border-white/20 hover:!border-white/50"
+							class="uppercase tracking-widest text-sm py-5 px-10 !bg-transparent !border !border-white/20 hover:!border-brand-500/50 hover:!text-brand-400"
 						>
 							Connect on LinkedIn
 						</UIButton>

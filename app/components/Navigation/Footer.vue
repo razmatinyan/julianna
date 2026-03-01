@@ -75,24 +75,26 @@ const socialLinks = [
 				<UISplitText
 					as="p"
 					ref="footerTitle"
-					class="text-4xl lg:text-7xl font-bold text-white tracking-tighter leading-[1.1] mb-2"
+					class="text-4xl lg:text-7xl font-medium text-neutral-200 tracking-tighter leading-[1] mb-2 font-serif"
 				>
 					Ready to scale your
 				</UISplitText>
 				<UIGradientText
 					as="p"
 					ref="gradientText"
-					class="text-5xl lg:text-8xl font-extrabold mb-8 pb-4"
+					class="text-6xl lg:text-8xl font-serif-italic mb-12 pb-4 tracking-tight"
 				>
 					Revenue Growth?
 				</UIGradientText>
 				<p
-					class="text-neutral-400 text-lg max-w-xl mx-auto mb-10 leading-relaxed"
+					class="text-neutral-400 text-lg max-w-xl mx-auto mb-12 leading-relaxed font-light"
 				>
 					Let’s build a high-performing sales engine together. Reach
 					out and tell me about your growth objectives.
 				</p>
-				<UIButton class="pointer-events-auto uppercase">
+				<UIButton
+					class="pointer-events-auto uppercase tracking-widest text-sm py-4 px-10"
+				>
 					Discuss Your Strategy
 				</UIButton>
 			</div>

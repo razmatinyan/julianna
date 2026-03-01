@@ -137,7 +137,7 @@ watch(startEntrance, val => {
 			class="fixed top-8 left-1/2 -translate-x-1/2 z-40"
 		>
 			<div
-				class="bg-neutral-900/80 backdrop-blur-xl border border-white/10 rounded-full flex items-center shadow-2xl"
+				class="glass-panel rounded-full flex items-center shadow-2xl shadow-black/50"
 			>
 				<NuxtLink
 					to="/"
@@ -147,14 +147,14 @@ watch(startEntrance, val => {
 				>
 					<span class="relative">
 						<span
-							class="absolute inset-0 bg-primary/20 blur-md rounded-full group-hover:bg-primary/40 transition-all"
+							class="absolute inset-0 bg-brand-500/20 blur-md rounded-full group-hover:bg-brand-500/40 transition-all duration-700"
 						></span>
 						<span
-							class="relative size-10 bg-surface-dark border border-primary/30 rounded-full flex items-center justify-center group-hover:border-primary/60 transition-colors"
+							class="relative size-10 bg-dark-800 border border-white/10 rounded-full flex items-center justify-center group-hover:border-brand-500/50 group-hover:bg-dark-500 transition-all duration-500"
 						>
 							<span
 								ref="logoLetter"
-								class="font-serif-italic font-bold text-xl text-primary"
+								class="font-serif-italic font-bold text-xl text-brand-400"
 							>
 								JG
 							</span>
