@@ -137,19 +137,28 @@ watch(startEntrance, val => {
 			class="fixed top-8 left-1/2 -translate-x-1/2 z-40"
 		>
 			<div
-				class="bg-neutral-900/80 backdrop-blur-xl border border-white/10 rounded-full p-2 flex items-center shadow-2xl"
+				class="bg-neutral-900/80 backdrop-blur-xl border border-white/10 rounded-full flex items-center shadow-2xl"
 			>
 				<NuxtLink
 					to="/"
 					ref="logoCircle"
 					:external="forceExternal"
-					class="group bg-white/10 p-2 rounded-full flex-shrink-0 flex"
+					class="flex items-center gap-2 group flex-shrink-0"
 				>
-					<span
-						ref="logoLetter"
-						class="text-brand-500 font-semibold text-lg leading-none w-5 h-5 flex items-center justify-center"
-					>
-						J
+					<span class="relative">
+						<span
+							class="absolute inset-0 bg-primary/20 blur-md rounded-full group-hover:bg-primary/40 transition-all"
+						></span>
+						<span
+							class="relative size-10 bg-surface-dark border border-primary/30 rounded-full flex items-center justify-center group-hover:border-primary/60 transition-colors"
+						>
+							<span
+								ref="logoLetter"
+								class="font-serif-italic font-bold text-xl text-primary"
+							>
+								JG
+							</span>
+						</span>
 					</span>
 				</NuxtLink>
 
@@ -171,3 +180,5 @@ watch(startEntrance, val => {
 		</nav>
 	</header>
 </template>
+
+<style scoped></style>

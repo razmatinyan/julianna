@@ -1,9 +1,11 @@
 <template>
-	<Loading />
+	<div>
+		<Loading />
 
-	<NuxtLayout>
-		<NuxtPage />
-	</NuxtLayout>
+		<NuxtLayout>
+			<NuxtPage />
+		</NuxtLayout>
+	</div>
 </template>
 
 <script setup lang="ts">

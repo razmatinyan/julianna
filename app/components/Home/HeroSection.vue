@@ -150,7 +150,7 @@ animate(() => {
 			<UISplitText
 				ref="heroBackgroundText"
 				as="p"
-				class="text-[18vw] leading-none font-semibold text-white/5 tracking-tighter mix-blend-overlay"
+				class="text-[18vw] leading-none font-semibold text-white/5 tracking-tighter mix-blend-overlay font-serif-italic"
 			>
 				Julianna
 			</UISplitText>
@@ -213,9 +213,11 @@ animate(() => {
 					specializing in B2B growth, strategic client acquisition,
 					and maximizing revenue.
 				</UISplitText>
-				<UIButton ref="cta" class="uppercase">
-					View My Track Record
-				</UIButton>
+				<a href="mailto:hello@example.com">
+					<UIButton ref="cta" class="uppercase">
+						Let's Connect
+					</UIButton>
+				</a>
 			</div>
 		</div>
 	</section>

@@ -6,6 +6,7 @@ export default <Partial<Config>>{
 		extend: {
 			fontFamily: {
 				sans: ['Geist', 'sans-serif'],
+				serif: ['Cormorant Garamond', 'serif'],
 			},
 			colors: {
 				brand: {

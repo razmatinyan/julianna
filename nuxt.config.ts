@@ -19,7 +19,10 @@ export default defineNuxtConfig({
 		'@vueuse/nuxt',
 	],
 	fonts: {
-		families: [{ name: 'Geist', provider: 'google' }],
+		families: [
+			{ name: 'Geist', provider: 'google' },
+			{ name: 'Cormorant Garamond', provider: 'google' },
+		],
 		priority: ['google'],
 		processCSSVariables: true,
 		experimental: {

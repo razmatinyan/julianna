@@ -167,9 +167,11 @@ animate(() => {
 				</div>
 
 				<div class="pt-6">
-					<UIButton ref="cta" class="uppercase"
-						>View My Track Record</UIButton
-					>
+					<NuxtLink to="/about">
+						<UIButton ref="cta" class="uppercase"
+							>More About Me</UIButton
+						>
+					</NuxtLink>
 				</div>
 			</div>
 		</div>
