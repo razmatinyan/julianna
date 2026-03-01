@@ -61,7 +61,7 @@ button:hover .button-text {
 	@apply [transition:background_0.5s,transform_0.4s] ease-button z-[1];
 }
 button:hover .dot {
-	transform: translate3d(4em, 0px, 0px) scale(32);
+	transform: translate3d(4em, 0px, 0px) scale(40);
 }
 
 .icon {

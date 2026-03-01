@@ -18,13 +18,13 @@ const cta = useTemplateRef<InstanceType<typeof UIButton> | null>('cta')
 const sectionData = [
 	{
 		id: useId(),
-		title: 'Strategy',
-		description: 'Research, Insights, Positioning',
+		title: 'Sales Strategy',
+		description: 'Pipeline Management, Forecasting, Market Expansion',
 	},
 	{
 		id: useId(),
-		title: 'Design',
-		description: 'UI/UX, Visual Identity, Motion',
+		title: 'Client Relations',
+		description: 'B2B Partnerships, Account Management, Negotiation',
 	},
 ]
 
@@ -131,13 +131,15 @@ animate(() => {
 					type="words"
 					class="text-4xl lg:text-6xl font-medium text-white tracking-tighter leading-[1.1]"
 				>
-					Crafting Meaningful <br />
-					<span class="text-neutral-500">Brands &amp; Intuitive</span>
+					Driving Measurable <br />
+					<span class="text-neutral-500"
+						>Revenue &amp; Strategic</span
+					>
 					<br />
-					Digital Experiences <br />
+					Business Growth <br />
 				</UISplitText>
-				<UIGradientText as="h2" ref="gradientText">
-					That Stand Out
+				<UIGradientText as="p" ref="gradientText">
+					That Scales
 				</UIGradientText>
 			</div>
 			<div class="space-y-8 pt-4">
@@ -147,12 +149,12 @@ animate(() => {
 					ref="sectionDescription"
 					class="text-xl text-white-800 leading-relaxed font-light"
 				>
-					I'm Julianna, a London-based Brand and UI/UX Designer
-					passionate about crafting visually compelling identities and
-					seamless digital experiences. With a strategic approach and
-					a keen eye for detail, I help businesses stand out and
-					connect with their audience. Let's build something
-					remarkable together.
+					I'm Julianna, an Armenia-based Sales Manager passionate
+					about building high-performing sales pipelines and forging
+					lasting B2B partnerships. With a data-driven approach and a
+					focus on client success, I help businesses expand their
+					market share and accelerate revenue growth. Let's elevate
+					your sales strategy together.
 				</UISplitText>
 
 				<div class="features grid grid-cols-2 gap-6 pt-4">
@@ -166,7 +168,7 @@ animate(() => {
 
 				<div class="pt-6">
 					<UIButton ref="cta" class="uppercase"
-						>See My Works</UIButton
+						>View My Track Record</UIButton
 					>
 				</div>
 			</div>

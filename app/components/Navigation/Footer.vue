@@ -73,27 +73,27 @@ const socialLinks = [
 			<!-- Main CTA Area -->
 			<div class="flex flex-col items-center text-center mb-24">
 				<UISplitText
-					as="h2"
+					as="p"
 					ref="footerTitle"
 					class="text-4xl lg:text-7xl font-bold text-white tracking-tighter leading-[1.1] mb-2"
 				>
-					Ready to craft your
+					Ready to scale your
 				</UISplitText>
 				<UIGradientText
-					as="h2"
+					as="p"
 					ref="gradientText"
-					class="text-5xl lg:text-8xl font-black mb-8 pb-4"
+					class="text-5xl lg:text-8xl font-extrabold mb-8 pb-4"
 				>
-					Digital Legacy?
+					Revenue Growth?
 				</UIGradientText>
 				<p
 					class="text-neutral-400 text-lg max-w-xl mx-auto mb-10 leading-relaxed"
 				>
-					Let’s build something extraordinary together. Reach out and
-					tell me about your next big project.
+					Let’s build a high-performing sales engine together. Reach
+					out and tell me about your growth objectives.
 				</p>
 				<UIButton class="pointer-events-auto uppercase">
-					Start a Project
+					Discuss Your Strategy
 				</UIButton>
 			</div>
 

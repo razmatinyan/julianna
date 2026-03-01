@@ -149,7 +149,7 @@ animate(() => {
 		>
 			<UISplitText
 				ref="heroBackgroundText"
-				as="h1"
+				as="p"
 				class="text-[18vw] leading-none font-semibold text-white/5 tracking-tighter mix-blend-overlay"
 			>
 				Julianna
@@ -172,7 +172,7 @@ animate(() => {
 					based <br />
 				</UISplitText>
 				<UIGradientText
-					as="h2"
+					as="p"
 					ref="gradientTitle"
 					class="gradient-wrapper text-5xl lg:text-7xl font-medium bg-clip-text text-transparent bg-gradient-to-r from-brand-500 to-white"
 				>
@@ -209,10 +209,13 @@ animate(() => {
 					ref="heroAbout"
 					class="text-lg text-neutral-400 mb-8 leading-relaxed"
 				>
-					Hi, I'm Julianna. A passionate brand designer crafting
-					seamless digital experiences that connect and convert.
+					Hi, I'm Julianna. A results-driven Sales Manager
+					specializing in B2B growth, strategic client acquisition,
+					and maximizing revenue.
 				</UISplitText>
-				<UIButton ref="cta" class="uppercase"> See My Works </UIButton>
+				<UIButton ref="cta" class="uppercase">
+					View My Track Record
+				</UIButton>
 			</div>
 		</div>
 	</section>
