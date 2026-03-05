@@ -148,7 +148,7 @@ animate(() => {
 				<UIGradientText
 					as="p"
 					ref="gradientText"
-					class="text-7xl lg:text-9xl font-serif-italic tracking-tighter text-brand-400 mt-2 mb-12"
+					class="!leading-[1.2] text-7xl lg:text-9xl font-serif-italic tracking-tighter text-brand-400 mt-2 mb-12"
 				>
 					Something Great.
 				</UIGradientText>
@@ -185,7 +185,7 @@ animate(() => {
 					>
 						<UIButton
 							ref="linkedinButton"
-							class="uppercase tracking-widest text-sm py-5 px-10 !bg-transparent !border !border-white/20 hover:!border-brand-500/50 hover:!text-brand-400"
+							class="uppercase tracking-widest text-sm py-5 px-10 !bg-transparent !border !border-white/20 hover:!border-brand-500/50"
 						>
 							Connect on LinkedIn
 						</UIButton>

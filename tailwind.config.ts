@@ -11,8 +11,8 @@ export default <Partial<Config>>{
 			colors: {
 				brand: {
 					400: '#fbbf24',
-					500: '#ea580c',
-					600: '#c2410c',
+					500: '#ff6900',
+					600: '#e55e00',
 				},
 				dark: {
 					surface: '#121212',

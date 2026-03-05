@@ -17,6 +17,8 @@ export default defineNuxtConfig({
 		'@nuxtjs/tailwindcss',
 		'@nuxt/fonts',
 		'@vueuse/nuxt',
+		'@nuxtjs/sitemap',
+		'@nuxtjs/robots',
 	],
 	fonts: {
 		families: [
@@ -38,5 +40,14 @@ export default defineNuxtConfig({
 			xl: 1280,
 			'2xl': 1536,
 		},
+	},
+	site: {
+		url: 'https://julianna.am',
+		name: 'Julianna Gharibyan | Sales Manager',
+		defaults: {
+			lastmod: new Date().toISOString(),
+			priority: 0.7,
+			changefreq: 'weekly'
+		}
 	},
 })

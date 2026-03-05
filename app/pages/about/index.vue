@@ -228,7 +228,7 @@ animate(() => {
 				>
 					<div
 						ref="imageContainer"
-						class="relative w-full max-w-sm aspect-[4/5] rounded-[2rem] overflow-hidden bg-neutral-900 border border-white/10 shadow-2xl"
+						class="relative w-full max-w-[32rem] aspect-[4/5] rounded-t-full rounded-b-[4rem] overflow-hidden bg-neutral-900 border border-b-0 border-white/5"
 					>
 						<NuxtImg
 							format="webp"
@@ -237,7 +237,10 @@ animate(() => {
 							class="object-cover w-full h-full opacity-80"
 						/>
 						<div
-							class="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#0a0a0a] to-transparent"
+							class="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent opacity-80"
+						></div>
+						<div
+							class="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-dark-500 to-transparent"
 						></div>
 					</div>
 				</div>

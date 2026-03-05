@@ -150,7 +150,7 @@ animate(() => {
 			<UISplitText
 				ref="heroBackgroundText"
 				as="p"
-				class="text-[20vw] leading-none font-bold text-outline opacity-20 tracking-tighter mix-blend-overlay font-serif-italic"
+				class="text-[20vw] leading-none font-bold text-outline opacity-50 tracking-tighter mix-blend-overlay font-serif-italic"
 			>
 				Julianna
 			</UISplitText>
@@ -185,7 +185,7 @@ animate(() => {
 				class="image-container lg:col-span-4 relative flex justify-center lg:justify-end lg:-mb-20"
 			>
 				<div
-					class="relative w-full max-w-md aspect-[3/4] rounded-t-full rounded-b-[4rem] overflow-hidden bg-neutral-900 border border-white/5 shadow-2xl shadow-brand-500/20"
+					class="relative w-full max-w-md aspect-[3/4] rounded-t-full rounded-b-[4rem] overflow-hidden bg-neutral-900 border border-b-0 border-white/5 shadow-2xl shadow-brand-500/20"
 				>
 					<NuxtImg
 						format="webp"

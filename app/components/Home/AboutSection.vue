@@ -162,7 +162,7 @@ animate(() => {
 				</UISplitText>
 
 				<div
-					class="features grid md:grid-cols-2 gap-8 border-t border-white/5 pt-8 mt-8"
+					class="features grid md:grid-cols-2 gap-8 pt-8 mt-8"
 				>
 					<HomeAboutFeature
 						v-for="data in sectionData"

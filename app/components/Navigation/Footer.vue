@@ -48,10 +48,7 @@ animate(() => {
 }, footerContainer)
 
 const socialLinks = [
-	{ name: 'Twitter', url: '#' },
 	{ name: 'LinkedIn', url: '#' },
-	{ name: 'Instagram', url: '#' },
-	{ name: 'Dribbble', url: '#' },
 ]
 </script>
 
@@ -95,7 +92,7 @@ const socialLinks = [
 				<UIButton
 					class="pointer-events-auto uppercase tracking-widest text-sm py-4 px-10"
 				>
-					Discuss Your Strategy
+					Get In Touch
 				</UIButton>
 			</div>
 
@@ -107,7 +104,7 @@ const socialLinks = [
 				<p
 					class="order-2 md:order-1 mt-6 md:mt-0 font-light tracking-wide"
 				>
-					&copy; 2026 Julianna. All rights reserved.
+					&copy; 2026 Julianna Gharibyan. All rights reserved.
 				</p>
 
 				<div
