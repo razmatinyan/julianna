@@ -39,12 +39,12 @@ animate(() => {
 	tl.from(
 		heroBackgroundText.value!.getElements(),
 		{
-			duration: 0.5,
-			ease: 'expo.inOut',
+			ease: 'expo.out',
 			y: 30,
+			rotationY: -45,
 			autoAlpha: 0,
-			stagger: 0.075,
-			filter: 'blur(10px)',
+			stagger: 0.05,
+			filter: 'blur(20px)',
 		},
 		'+=.5',
 	)
