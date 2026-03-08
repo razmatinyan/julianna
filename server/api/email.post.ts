@@ -8,7 +8,7 @@ export default defineEventHandler(async event => {
 	const { data, error } = await resend.emails.send({
 		from: 'onboarding@resend.dev',
 		to: 'razmatinyan28@gmail.com',
-		subject: 'Message from Your Website julianna-sales.com',
+		subject: 'Message From Your Website!',
 		text: `You got a new email from ${fullName} (${email}): ${idea}`,
 	})
 
