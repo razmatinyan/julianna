@@ -169,7 +169,7 @@ animate(() => {
 				<div
 					class="flex flex-col sm:flex-row gap-6 justify-center items-center"
 				>
-					<a href="mailto:hello@example.com" class="block">
+					<a href="mailto:razmatinyan28@gmail.com" class="block">
 						<UIButton
 							ref="emailButton"
 							class="uppercase tracking-widest text-sm py-5 px-10"
@@ -178,7 +178,7 @@ animate(() => {
 						</UIButton>
 					</a>
 					<a
-						href="https://linkedin.com"
+						href="https://www.linkedin.com/in/julianna-gharibyan-0a62a7299/"
 						target="_blank"
 						rel="noopener noreferrer"
 						class="block"

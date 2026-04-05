@@ -8,7 +8,6 @@ import {
 	UIModal,
 	UIButton,
 } from '../UI'
-
 const { animate, gsap } = useGSAP()
 
 const footerContainer = useTemplateRef<HTMLElement | null>('footerContainer')
@@ -54,7 +53,12 @@ animate(() => {
 	}
 }, footerContainer)
 
-const socialLinks = [{ name: 'LinkedIn', url: '#' }]
+const socialLinks = [
+	{
+		name: 'LinkedIn',
+		url: 'https://www.linkedin.com/in/julianna-gharibyan-0a62a7299/',
+	},
+]
 
 // Form State
 const form = ref({
@@ -63,11 +67,13 @@ const form = ref({
 	idea: '',
 })
 
-const errors = ref({
+const getDefaultErrors = () => ({
 	fullName: '',
 	email: '',
 	idea: '',
 })
+
+const errors = ref(getDefaultErrors())
 
 const isSubmitting = ref(false)
 const hasSubmitted = ref(false)
@@ -127,6 +133,15 @@ const validateForm = () => {
 	return isValid
 }
 
+const route = useRoute()
+
+watch(
+	() => route.path,
+	() => {
+		errors.value = getDefaultErrors()
+	},
+)
+
 watch(
 	() => form.value.fullName,
 	newVal => {
@@ -153,6 +168,7 @@ watch(
 		}
 	},
 )
+
 
 const submitForm = async () => {
 	hasSubmitted.value = true
@@ -201,9 +217,9 @@ const submitForm = async () => {
 	>
 		<!-- Background Floating Lines -->
 		<div class="absolute inset-0 z-0 opacity-40">
-			<!-- <UIBackgroundLines
+			<!-- UIBackgroundLines
 				:lines-gradient="['#ff6b2c', '#e65214', '#ff6b2c']"
-			/> -->
+			/ -->
 		</div>
 
 		<div
@@ -268,11 +284,23 @@ const submitForm = async () => {
 				ref="bottomBar"
 				class="relative z-20 flex flex-col md:flex-row justify-between items-center text-neutral-500 text-sm border-t border-white/5 pt-8 mt-auto pointer-events-auto"
 			>
-				<p
-					class="order-2 md:order-1 mt-6 md:mt-0 font-light tracking-wide"
+				<div
+					class="order-2 md:order-1 mt-6 md:mt-0 flex flex-col items-center md:items-start gap-1"
 				>
-					&copy; 2026 Julianna Gharibyan. All rights reserved.
-				</p>
+					<p class="font-light tracking-wide">
+						&copy; 2026 Julianna Gharibyan. All rights reserved.
+					</p>
+					<p class="font-light text-xs text-neutral-600">
+						Website made by
+						<a
+							href="https://github.com/razmatinyan"
+							target="_blank"
+							rel="noopener noreferrer"
+							class="hover:text-neutral-300 underline underline-offset-2 transition-colors"
+							>Razmik Matinyan</a
+						>
+					</p>
+				</div>
 
 				<div
 					class="flex flex-wrap justify-center items-center gap-6 md:gap-8 order-1 md:order-2"

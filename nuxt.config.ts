@@ -7,7 +7,7 @@ export default defineNuxtConfig({
 			title: 'Julianna Gharibyan | Sales Manager',
 			htmlAttrs: { lang: 'en' },
 			meta: [{ charset: 'utf-8' }],
-			link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+			link: [{ rel: 'icon', type: 'image/svg+xml', href: '/logo.svg' }],
 		},
 	},
 	css: ['~/assets/css/tailwind.css', '~/assets/css/main.css'],
@@ -47,7 +47,7 @@ export default defineNuxtConfig({
 		defaults: {
 			lastmod: new Date().toISOString(),
 			priority: 0.7,
-			changefreq: 'weekly'
-		}
+			changefreq: 'weekly',
+		},
 	},
 })
