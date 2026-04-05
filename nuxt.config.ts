@@ -42,7 +42,7 @@ export default defineNuxtConfig({
 		},
 	},
 	site: {
-		url: 'https://julianna.am',
+		url: 'https://julianna-sales.vercel.app',
 		name: 'Julianna Gharibyan | Sales Manager',
 		defaults: {
 			lastmod: new Date().toISOString(),
